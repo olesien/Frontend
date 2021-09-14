@@ -1,0 +1,11 @@
+html {
+    min-height: 100vh;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    display: block;
+
+    min-height: 100px;
+}
