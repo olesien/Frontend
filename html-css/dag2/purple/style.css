@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'PT Sans', sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgb(229, 230, 231);
+}
+
+.logo img {
+    width: 5rem;
+    height: auto;
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+nav ul li {
+    margin: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+
+}
+
+nav ul li i {
+    padding-right: 0.3em;
+}
+
+nav ul li:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+nav ul .active {
+    background-color: rgb(145, 170, 253);
+}
+
+nav ul .active:hover {
+    background-color: rgb(136, 163, 250);
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 4rem 1rem;
+}
+
+main>article {
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    margin: 15px;
+    padding: 10px;
+    width: 25rem;
+    border-radius: 0.5rem;
+}
+
+main div {
+    flex: 3;
+    padding: 5px;
+}
+
+main aside {
+    flex: 1;
+}
+
+main aside img {
+    width: 5rem;
+}
+
+footer {
+    background-color: lightgray;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
