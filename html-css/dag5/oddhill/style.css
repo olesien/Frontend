@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.desktopNav {
+    display: none;
+}
+
+.mobileNav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 1rem 1.5rem;
+}
+
+.mobileNav .logo {
+    font-weight: normal;
+    font-size: 1.25rem;
+
+}
+
+.mobileNav nav .fa-bars {
+    font-size: 2em;
+
+}
+
+main .title {
+    padding: 1rem;
+}
+
+main article h2 {
+    font-size: 2.5em;
+    margin-top: 2rem;
+
+}
+
+main .title .servicesButton {
+    display: block;
+    background-color: #ffdd35;
+    padding: 1.5rem;
+    border-radius: 3rem;
+    margin: 2rem 0;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+}
+
+main a:hover {
+    /* background-color: #FDED99; */
+    opacity: 0.7;
+}
+
+.selectionOfWorks {
+    padding: 1rem;
+}
+
+.selectionOfWorks>h3 {
+    padding: 0.5em;
+}
+
+.selectionOfWorks picture img {
+    width: 100%;
+    height: auto;
+}
+
+.selectionOfWorks picture figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.selectionOfWorks .arrow {
+    padding: 1rem
+}
+
+.selectionOfWorks .caption {
+    width: 85%;
+    padding: 0.5em;
+}
+
+.selectionOfWorks a {
+    color: black;
+    font-weight: 700;
+    font-size: 1.25em;
+}
+
+.selectionOfWorks h4 {
+    padding-top: 1rem;
+    font-weight: lighter;
+}
+
+.selectionOfWorks .container {
+    display: flex;
+}
+
+.selectionOfWorks .container picture {
+    flex: 1;
+    margin: 1rem;
+}
+
+.selectionOfWorks .caseButton {
+    display: block;
+    background-color: #101aea;
+    padding: 1.5rem;
+    border-radius: 3rem;
+    margin: 2rem 0;
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+.vision {
+    background-color: #101AEA;
+    padding: 1.5rem;
+    color: white;
+}
+
+.vision h3,
+.career h3 {
+    padding: 2rem 0 1rem 0;
+}
+
+.vision p {
+    font-size: 1.5em;
+}
+
+.vision .visionButton {
+    display: block;
+    padding: 1.4rem;
+    border: 0.1rem solid white;
+    border-radius: 3rem;
+    margin: 2rem 0;
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.career {
+    background-color: #FA301E;
+    color: black;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.career p {
+    font-weight: 800;
+    font-size: 2em;
+    padding-bottom: 2rem;
+}
+
+.career p a {
+    color: black;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+footer h2 {
+    padding: 4rem 0 1.25rem 0;
+    font-size: 1.75em;
+}
+
+footer p {
+    font-size: 1.1em;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-inline-start: 0;
+}
+
+footer ul li a {
+    color: white;
+
+    margin: 0.5rem;
+    background-color: #ffdd35;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul li img {
+    width: auto;
+    height: 2em;
+    /* filter: invert(100%); */
+}
+
+footer ul li a:hover {
+    opacity: 0.7;
+}

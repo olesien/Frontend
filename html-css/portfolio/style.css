@@ -1,0 +1,85 @@
+/* All */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Nav bar */
+nav {
+    overflow: hidden;
+    display: flex;
+    min-height: 2rem;
+    background-color: rgb(231, 231, 231);
+}
+
+.header-title {
+    flex: 1;
+    padding-left: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    flex: 5;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+
+}
+
+.nav-link {
+    width: 5rem;
+    text-align: center;
+}
+
+.nav-link a {
+    text-decoration: none;
+    color: black;
+    padding-bottom: 0.2rem;
+}
+
+.nav-link a:hover {
+    color: blue;
+}
+
+.nav-link .active {
+    border-bottom: 1px solid black;
+}
+
+.topImageContainer {
+    padding-bottom: 1rem;
+    width: 100%;
+    height: 15rem;
+    background-image: url("./images/top.jpg");
+    background-position: center;
+    ;
+}
+
+.topImageContainer img {
+    width: 100%;
+    height: 10rem;
+
+}
+
+.introduction {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+.introduction aside {
+    display: block;
+    margin: 0.5rem;
+}
+
+.introduction aside img {
+    height: auto;
+    width: 100%;
+}
+
+.introduction>* {
+    flex: 1;
+    padding: 10vw;
+    margin: 0.2rem 1rem;
+}
