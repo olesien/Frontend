@@ -1,11 +1,10 @@
 * {
     margin: 0;
     box-sizing: border-box;
-
 }
 
 body {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Nunito Sans", sans-serif;
 }
 
 .desktopNav {
@@ -22,12 +21,10 @@ body {
 .mobileNav .logo {
     font-weight: normal;
     font-size: 1.25rem;
-
 }
 
 .mobileNav nav .fa-bars {
     font-size: 2em;
-
 }
 
 main .title {
@@ -37,7 +34,6 @@ main .title {
 main article h2 {
     font-size: 2.5em;
     margin-top: 2rem;
-
 }
 
 main .title .servicesButton {
@@ -62,7 +58,7 @@ main a:hover {
     padding: 1rem;
 }
 
-.selectionOfWorks>h3 {
+.selectionOfWorks > h3 {
     padding: 0.5em;
 }
 
@@ -78,7 +74,7 @@ main a:hover {
 }
 
 .selectionOfWorks .arrow {
-    padding: 1rem
+    padding: 1rem;
 }
 
 .selectionOfWorks .caption {
@@ -117,11 +113,10 @@ main a:hover {
     font-size: 1.2em;
     font-weight: 600;
     text-align: center;
-
 }
 
 .vision {
-    background-color: #101AEA;
+    background-color: #101aea;
     padding: 1.5rem;
     color: white;
 }
@@ -149,7 +144,7 @@ main a:hover {
 }
 
 .career {
-    background-color: #FA301E;
+    background-color: #fa301e;
     color: black;
     padding: 1rem;
     margin-top: 3rem;
@@ -211,4 +206,8 @@ footer ul li img {
 
 footer ul li a:hover {
     opacity: 0.7;
+}
+
+footer .addresses {
+    padding: 0.5rem 0.1rem 0.5rem 0.1rem;
 }
