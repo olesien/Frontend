@@ -15,6 +15,12 @@ a {
 ul li {
     list-style: none;
 }
+
+ul {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
 .blue {
     background-color: #1690e2;
     padding: 0.6rem 1rem;
@@ -42,6 +48,11 @@ header {
 header .logo {
     width: 100px;
 }
+
+header .logo img {
+    filter: brightness(97%);
+}
+
 header .logo > * {
     width: 100%;
 }
@@ -107,12 +118,22 @@ header .hamburger i {
 
 .big_info article {
     display: flex;
+    align-items: center;
     padding: 0.5rem 0;
 }
 
 .big_info article > * {
     flex: 1;
     padding: 0.5rem;
+}
+
+.big_info img {
+    width: 100%;
+    height: auto;
+}
+
+.big_info article .info_container {
+    padding: 1rem;
 }
 
 .big_info article .info_container * {
@@ -134,9 +155,6 @@ header .hamburger i {
     justify-content: center;
     width: 250px;
     flex-flow: row wrap;
-    padding-inline-start: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
     margin: auto;
 }
 .company ul li {
@@ -164,4 +182,54 @@ header .hamburger i {
 .contact_us .button_container a {
     margin: 1rem;
     text-align: center;
+}
+
+.top_footer {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.top_footer > * {
+    flex: 1;
+    text-align: center;
+}
+
+.top_footer ul li {
+    padding: 0.2rem;
+}
+
+footer p {
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+footer > ul {
+    display: flex;
+    justify-content: center;
+}
+footer > ul li {
+    width: 3rem;
+    padding: 0.2rem;
+}
+
+footer > ul li img {
+    width: 100%;
+    height: auto;
+}
+
+footer .footer_img_container img {
+    width: 8rem;
+    height: auto;
+}
+
+@media only screen and (min-width: 800px) {
+    .cards .card_wrapper {
+        flex-flow: row wrap;
+    }
+    .cards .card_wrapper .card {
+        display: inline-block;
+        width: 40%;
+        padding: 2rem;
+    }
 }
