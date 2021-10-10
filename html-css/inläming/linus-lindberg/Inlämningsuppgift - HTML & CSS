@@ -1,0 +1,39 @@
+Vad ska vi göra?
+
+Försöka återskapa siten så gott som ni kan (se skärmdumparna). Texterna och övrig media hittar ni på github-repot.
+
+Hur ska vi göra det?
+
+Ni ska använda er utav de tekniker som vi har lärt oss under kursen :)
+
+Checklista för godkänt:
+
+Korrekt och semantisk HTML
+
+Ingen överflödig CSS
+
+Responsiv och mobilanpassad
+
+Tänkt på styckeindelning och övriga typografiska element
+
+Minst ett men gärna två passande typsnitt från Google Fonts
+
+Använda ikoner från FontAwesome (till de 4 sista artiklarna)
+
+Korrekta bildlänkar och ARIA-attribut
+
+Använda Bootstrap 5
+
+Korrekt indentering
+
+Sticky header
+
+Löst "varannan bild sist" i artiklarna med enbart CSS
+
+Checklista för Väl Godkänt:
+
+Allt ovan, men ni får inte använda er utav Bootstrap (eller annat ramverk). Enbart egen CSS.
+
+Mobilanpassad "hamburgermeny" (Vi har ju inget javascript här, så förmodligen får du bygga två separata menyer)
+
+Användning av pseudoklasser
