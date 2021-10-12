@@ -5,17 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Linux</title>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0c338ef249.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
+        <div class="nav-container">
+
+        
         <div class="title">
             <a href="#">
-                <p>IMG</p>
+                <img src="./images/tux.png" alt="">
                 <h4>About Linux</h4>
             </a>
         </div>
-        <nav>
+        <nav id="nav">
             <ul>
                 <li><a href="#">Hem</a></li>
                 <li><a href="#">Manjaro</a></li>
@@ -26,54 +33,115 @@
             </ul>
         </nav>
         <div class="hamburger">
-            <p>Hamburger</p>
+            <i class="fas fa-bars"></i>
         </div>
+    </div>
     </header>
+    <div class="spacer"></div>
     <section class="hero">
         <h1>FOSS</h1>
         <p>And why it's good for you</p>
     </section>
     <main>
         <section class="comparing-systems">
-            <h2>Comparing the systems</h2>
+            <h1>Comparing the systems</h1>
             <article>
+                <aside>
+                    <img src="./images/manjaro_scrn.png" alt="Image of Majaro OS">
+                </aside>
                 <div>
                     <span>
-                        <p>img</p>
+                        <img src="./logos/manjaro.svg" alt="manajro logo">
                         <h2>Majaro</h2>
                     </span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint dignissimos, sapiente cumque doloribus facilis aliquid, voluptatibus ratione officia dolor et hic eius quis numquam corrupti deleniti expedita impedit. Voluptatum, iure.</p>
+                   <p>Is an accessible, friendly, open-source operating system. Providing all the benefits of cutting-edge software combined with a focus on getting started quickly, automated tools to require less manual intervention, and help readily available when needed. Manjaro is suitable for both newcomers and experienced computer users.</p>
+                   <p>Unlike proprietary operating systems you have full control over your hardware without restrictions. This makes Manjaro a powerful Operating System ideal in home, work, and development environments.</p>
+                   <p>It is easily possible to run many popular Windows applications, using compatibility software such as Wine, PlayonLinux or Proton via Steam. The examples given here are far from comprehensive!</p>
+                   <p>Representing a perfect middle-ground for those who want good performance, full control, and cutting-edge software but also a degree of software stability.</p>
                 </div>
-                <aside>
-                    <img src="#" alt="Image of Majaro OS">
-                </aside>
+                
             </article>
             <article>
+                <aside>
+                    <img src="./images/ubuntu_scrn.jpeg" alt="Image of Ubuntu OS">
+                </aside>
                 <div>
                     <span>
-                        <p>img</p>
-                        <h2>Majaro</h2>
+                        <img src="./logos/ubuntu.png" alt="ubuntu logo">
+                        <h2>Ubuntu</h2>
                     </span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint dignissimos, sapiente cumque doloribus facilis aliquid, voluptatibus ratione officia dolor et hic eius quis numquam corrupti deleniti expedita impedit. Voluptatum, iure.</p>
+                    <h2>Open Source</h2>
+                    <p>Ubuntu has always been free to download, use and share. We believe in the power of open source software; Ubuntu could not exist without its worldwide community of voluntary developers.</p>
+                    <h2>Secure</h2>
+                    <p>With a built-in firewall and virus protection software, Ubuntu is one of the most secure operating systems around. And the long-term support releases give you five years of security patches and updates.</p>
+                    <h2>Accessible</h2>
+                    <p>Computing is for everyone regardless of nationality, gender or disability. Ubuntu is fully translated into over 50 languages and includes essential assistive technologies.</p>
+                    <h2>Available on the largest range of hardware, ever</h2>
+                    <p>Canonical works closely with Dell, Lenovo and HP to certify that Ubuntu works on a wide range of their laptops and workstations. It means that a seamless Ubuntu experience is available out of the box with more hardware choice than ever.</p>
+                    <p>And Ubuntu isn’t just for the desktop, it is used in data centres around the world powering every kind of server imaginable and is by far, the most popular operating system in the cloud.</p>
                 </div>
-                <aside>
-                    <img src="#" alt="Image of Majaro OS">
-                </aside>
+                
             </article>
             <article>
+                <aside>
+                    <img src="./images/popos_scrn.png" alt="Image of Pop! OS">
+                </aside>
                 <div>
                     <span>
-                        <p>img</p>
-                        <h2>Majaro</h2>
+                        <img src="./logos/popos.png" alt="popos logo">
+                        <h2>Pop!_OS</h2>
                     </span>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint dignissimos, sapiente cumque doloribus facilis aliquid, voluptatibus ratione officia dolor et hic eius quis numquam corrupti deleniti expedita impedit. Voluptatum, iure.</p>
+                    <p>Pop!_OS is an operating system for STEM and creative professionals who use their computer as a tool to discover and create. Unleash your potential on secure, reliable open source software. Based on your exceptional curiosity, we sense you have a lot of it.</p>
+                    <h2>Auto-Tiling with Pop Shell</h2>
+                    <p>Pop!_OS uses auto-tiling for the same reason that people hire assistants: Organizing your work is incredibly time-consuming. Sure, you could still move, resize, and arrange windows yourself, but why spend the time when your OS does it for you? Auto-tiling helps you be both organized and efficient, and is especially convenient on large displays.</p>
+                    <h2>Workspaces</h2>
+                    <p>Keep relevant content together and irrelevant content out of sight. When the clutter overwhelms you, just toss it onto another desktop. Problem solved.</p>
+                    <h2>Keyboard Navigation</h2>
+                    <p>Arm yourself with a dark-lord level of power at your fingertips. Use keyboard shortcuts to:</p>
+                    <ul>
+                        <li>Move/resize windows</li>
+                        <li>Search for anything</li>
+                        <li>Launch applications</li>
+                    </ul>
+                    <h2>Stacking</h2>
+                    <p>Stack application windows atop one another like tabs in a web browser. Just remember to switch off of Steam when the boss walks in.</p>
                 </div>
-                <aside>
-                    <img src="#" alt="Image of Majaro OS">
-                </aside>
+                
             </article>
         </section>
+        <section class="flavours">
+            <h1>Things that runs different flavours of Linux</h1>
+            <ul class="flavour-list">
+                <div class="row">
+                <li class="flavour">
+                    <i class="fab fa-raspberry-pi"></i>
+                    <h3>Raspberry PI</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum amet sequi, accusamus quaerat ut similique aperiam earum odio quia obcaecati eius a tenetur deleniti autem temporibus doloribus? Quos, repellendus inventore.</p>
+                </li>
+                <li class="flavour">
+                    <i class="fas fa-server"></i>
+                    <h3>Most servers run on Linux!</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum amet sequi, accusamus quaerat ut similique aperiam earum odio quia obcaecati eius a tenetur deleniti autem temporibus doloribus? Quos, repellendus inventore.</p>
+                </li>
+            </div>
+            <div class="row">
+                <li class="flavour">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Your every day companion</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum amet sequi, accusamus quaerat ut similique aperiam earum odio quia obcaecati eius a tenetur deleniti autem temporibus doloribus? Quos, repellendus inventore.</p>
+                </li>
+                <li class="flavour">
+                    <i class="fas fa-euro-sign"></i>
+                    <h3>How can (a lot of) all these amazing things be totally free?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum amet sequi, accusamus quaerat ut similique aperiam earum odio quia obcaecati eius a tenetur deleniti autem temporibus doloribus? Quos, repellendus inventore.</p>
+                </li>
+            </div>
+            </ul>
+        </section>
     </main>
+    <footer>
+        <address>Mitt Namn min@mail.se</address>
+    </footer>
 
     <script src="main.js"></script>
 </body>

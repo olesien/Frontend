@@ -1,0 +1,253 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: url("./fonts/ubuntu-light-webfont.woff");
+    src: url("./fonts/ubuntu-medium-webfont.woff");
+    src: url("./fonts//ubuntu-regular-webfont.woff");
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #e1e1e1;
+    font-family: "Ubuntu", sans-serif;
+}
+ul {
+    list-style: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+
+    flex-direction: row;
+
+    background-color: #cfcfcf;
+}
+
+header .nav-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+header .title a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .title a > * {
+    display: inline;
+}
+
+header .title a img {
+    width: 2rem;
+    height: auto;
+    padding-right: 0.5rem;
+}
+
+header nav {
+    display: none;
+    position: absolute;
+    top: 4.25rem;
+    right: 0;
+    width: 140px;
+    background-color: #f5f5f5;
+}
+
+header .show {
+    display: block;
+}
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    padding: 0.75rem;
+}
+
+header nav ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    color: rgb(198, 142, 0);
+}
+
+header .hamburger {
+    font-size: 1.5em;
+    padding: 0.5rem;
+    border: 2px solid rgb(184, 183, 183);
+    color: rgb(80, 79, 79);
+}
+
+header .hamburger:hover {
+    cursor: pointer;
+    color: black;
+}
+
+/* main {
+    margin-top: 30rem;
+} */
+
+.spacer {
+    height: 95px;
+}
+.hero {
+    background-image: url("./images/welcome-img.jpg");
+    text-align: center;
+    background-size: cover;
+    padding: 2rem 0;
+}
+
+/* .comparing-systems {
+    padding: 1.5rem;
+} */
+
+article {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+article p,
+article li {
+    font-weight: lighter;
+    color: rgb(94, 94, 94);
+}
+
+.comparing-systems h1 {
+    text-align: center;
+}
+.comparing-systems aside img {
+    width: 100%;
+}
+
+.comparing-systems span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.comparing-systems span img {
+    width: 3rem;
+    height: auto;
+    padding-right: 2rem;
+}
+.flavours h1 {
+    text-align: center;
+    padding: 0.2rem 1rem;
+}
+
+.flavours ul li {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.flavour i {
+    font-size: 10rem;
+    display: flex;
+    justify-content: center;
+}
+
+.flavour h3 {
+    text-align: center;
+}
+
+footer {
+    background-color: #f5f5f5;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+/* medium size */
+@media only screen and (min-width: 850px) {
+    /* .comparing-systems {
+        margin: 0.5rem 1.5rem;
+    } */
+
+    .comparing-systems article {
+        display: flex;
+        flex-direction: row;
+    }
+    .comparing-systems article:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+    .comparing-systems article > * {
+        flex: 1;
+        padding: 0.75rem;
+    }
+    .comparing-systems article img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* .flavours {
+        margin: 0.5rem 1.5rem;
+    } */
+    .flavours .row {
+        display: flex;
+        flex: 1;
+    }
+
+    main {
+        margin: 0.5rem 0;
+        width: 800px;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    main {
+        width: 1000px;
+    }
+
+    .nav-container {
+        width: 1000px;
+        margin: auto;
+    }
+
+    article,
+    .flavours ul li {
+        margin-bottom: 1.5rem;
+    }
+
+    header {
+        justify-content: flex-start;
+    }
+
+    header nav {
+        display: block;
+        position: inherit;
+        top: inherit;
+        right: inherit;
+        width: inherit;
+        background-color: inherit;
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    header nav ul li {
+        padding: 0.5rem;
+    }
+
+    header .hamburger {
+        display: none;
+    }
+}
