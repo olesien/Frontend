@@ -200,10 +200,13 @@ footer {
     } */
     .flavours .row {
         display: flex;
+    }
+    .flavours .row > * {
         flex: 1;
     }
 
-    main {
+    .comparing-systems,
+    .flavours {
         margin: 0.5rem 0;
         width: 800px;
         margin: auto;
@@ -211,7 +214,8 @@ footer {
 }
 
 @media only screen and (min-width: 1400px) {
-    main {
+    .comparing-systems,
+    .flavours {
         width: 1000px;
     }
 
