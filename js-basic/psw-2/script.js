@@ -29,55 +29,65 @@
 let passwords = ["psw1", "pswjuhuhhuhuhui.-2", "psw3"];
 
 const specialChars = [
-	"@",
-	"$",
-	"%",
-	"*",
-	"^",
-	"<",
-	">",
-	"?",
-	"!",
-	"(",
-	")",
-	"[",
-	"]",
-	"{",
-	"}",
-	"'",
+    "@",
+    "$",
+    "%",
+    "*",
+    "^",
+    "<",
+    ">",
+    "?",
+    "!",
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "'",
 ];
 
 const passwordChecker = (password) => {
-	let specialCharsCount = 0;
-	let lineCharsCount = 0;
+    let specialCharsCount = 0;
+    let lineCharsCount = 0;
 
-	for (let passI = 0; passI < password.length; passI++) {
-		let passChar = password[passI];
-		if (passChar == "-") {
-			lineCharsCount++;
-		}
-		for (let specialI = 0; specialI < specialChars.length; specialI++) {
-			let specialChar = specialChars[specialI];
-			if (passChar === specialChar) {
-				specialCharsCount++;
-			}
-		}
-	}
-	if (password.length >= 16) {
-		return true;
-	} else if (password.length >= 12 && lineCharsCount > 0) {
-		return true;
-	} else if (password.length >= 8 && specialCharsCount > 0) {
-		return true;
-	} else {
-		return false;
-	}
+    // for (let passI = 0; passI < password.length; passI++) {
+    // 	let passChar = password[passI];
+    // 	if (passChar == "-") {
+    // 		lineCharsCount++;
+    // 	}
+    // 	for (let specialI = 0; specialI < specialChars.length; specialI++) {
+    // 		let specialChar = specialChars[specialI];
+    // 		if (passChar === specialChar) {
+    // 			specialCharsCount++;
+    // 		}
+    // 	}
+    // }
+    for (let specialI = 0; specialI < specialChars.length; specialI++) {
+        let specialChar = specialChars[specialI];
+        if (password.includes(specialChar)) {
+            specialCharsCount++;
+        }
+    }
+    if (password.includes("-")) {
+        lineCharsCount++;
+    }
+
+    if (password.length >= 16) {
+        return true;
+    } else if (password.length >= 12 && lineCharsCount > 0) {
+        return true;
+    } else if (password.length >= 8 && specialCharsCount > 0) {
+        return true;
+    } else {
+        return false;
+    }
 };
 
 passwords.forEach((password) => {
-	let isSafe = passwordChecker(password);
+    let isSafe = passwordChecker(password);
 
-	console.log(
-		`The password ${password} is considered ${isSafe ? "good" : "bad"}!`
-	);
+    console.log(
+        `The password ${password} is considered ${isSafe ? "good" : "bad"}!`
+    );
 });
