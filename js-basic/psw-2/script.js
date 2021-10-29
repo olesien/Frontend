@@ -81,3 +81,13 @@ passwords.forEach((password) => {
 		`The password ${password} is considered ${isSafe ? "good" : "bad"}!`
 	);
 });
+
+let points = 1;
+
+if (true) {
+	points = 2;
+	points++;
+	console.log(points);
+}
+
+console.log(points);
