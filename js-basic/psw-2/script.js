@@ -26,6 +26,10 @@
  *
  */
 
+const feedbackElement = document.querySelector("#feedback");
+const passwordInputElement = document.querySelector("#passwordInput");
+const submitButtonElement = document.querySelector("#submitButton");
+
 let passwords = ["psw1", "pswjuhuhhuhuhui.-2", "psw3"];
 
 const specialChars = [
@@ -92,12 +96,27 @@ passwords.forEach((password) => {
     );
 });
 
+submitButtonElement.addEventListener("click", () => {
+    let password = passwordInputElement.value;
+    console.log(passwordInputElement.value);
+    let isSafe = false;
+    if (password.length > 0) {
+        isSafe = passwordChecker(password);
+    }
+    console.log(
+        `The password ${password} is considered ${isSafe ? "good" : "bad"}!`
+    );
+    feedbackElement.innerText = `The password ${password} is considered ${
+        isSafe ? "good" : "bad"
+    }!`;
+});
+
 let points = 1;
 
 if (true) {
-	points = 2;
-	points++;
-	console.log(points);
+    points = 2;
+    points++;
+    console.log(points);
 }
 
 console.log(points);
