@@ -1,0 +1,10 @@
+li p {
+	margin: 0;
+	display: inline-block;
+	padding: 10px 15px;
+}
+
+.crossed-out {
+	color: red;
+	text-decoration: line-through;
+}
