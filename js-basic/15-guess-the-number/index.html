@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>15-guess-the-number</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>15-guess-the-number</title>
 
-	<link rel="stylesheet" href="style.css">
-</head>
+		<link rel="stylesheet" href="style.css" />
+	</head>
 
-<body>
-	<h1>15-guess-the-number</h1>
-    <form id="guesser">
-        <input type="text" name="number-input" value="" id="number-input">
-        <input type="submit" value="Check number">
-        <input id="reset-button" type="button" value="Reset">
-        
-    </form>
-    <p id="feedback">Guess a number between 1 and 10!</p>
+	<body>
+		<h1>15-guess-the-number</h1>
+		<form id="guesser">
+			<input
+				type="number"
+				name="number-input"
+				value=""
+				min="1"
+				max="10"
+				id="number-input"
+			/>
+			<input type="submit" value="Check number" />
+			<input id="reset-button" type="button" value="Reset" />
+		</form>
+		<p id="feedback">Guess a number between 1 and 10!</p>
+		<p id="guesses-box">Guesses: <span id="guesses">0</span></p>
+		<p id="highscore-box">Highscore: <span id="highscore">0</span></p>
 
-	<script src="script.js"></script>
-</body>
+		<script src="script.js"></script>
+	</body>
 </html>
