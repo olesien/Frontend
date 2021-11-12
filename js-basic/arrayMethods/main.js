@@ -7,6 +7,11 @@ let todos = [
 		name: "test2",
 		id: 2,
 	},
+	,
+	{
+		name: "test3",
+		id: 3,
+	},
 ];
 
 let max = 0;
