@@ -14,6 +14,7 @@ header {
 
 .introduction {
     text-align: center;
+    margin-top: 50px;
 }
 
 .introduction > * {
@@ -27,8 +28,26 @@ footer {
     padding: 10px;
 }
 
+.introduction .startGame {
+    border: none;
+    background-color: rgb(14, 81, 250);
+    color: white;
+    padding: 10px;
+}
+
+.introduction .startGame:hover {
+    cursor: pointer;
+    background-color: rgb(0, 65, 230);
+}
+
+.game {
+    display: none;
+    margin-top: 30px;
+}
+
 .game .imgContainer {
     width: 600px;
+
     margin: auto;
 }
 
@@ -72,4 +91,12 @@ footer {
 .game .choice input:hover {
     background-color: aquamarine;
     cursor: pointer;
+}
+
+#gameContainer .hideElement {
+    display: none;
+}
+
+#gameContainer .showElement {
+    display: block;
 }
