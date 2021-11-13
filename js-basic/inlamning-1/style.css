@@ -65,7 +65,7 @@ footer {
     margin: 0;
 }
 
-.game .choices {
+.game #choices {
     display: flex;
     width: 600px;
     margin: auto;
@@ -74,7 +74,7 @@ footer {
     margin-top: 20px;
 }
 
-.game .choices .choice {
+.game #choices .choice {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,4 +99,13 @@ footer {
 
 #gameContainer .showElement {
     display: block;
+}
+
+#gameContainer .incorrect-guess {
+    background-color: red;
+}
+
+#gameContainer .incorrect-guess:hover {
+    cursor: default;
+    background-color: red;
 }
