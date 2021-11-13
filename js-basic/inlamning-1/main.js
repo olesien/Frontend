@@ -50,10 +50,11 @@ const toggleGameScreen = () => {
                 );
                 console.log(filteredChoices);
                 let randomChoice = getRandomInt(filteredChoices.length);
-                console.log(choicesCopy[randomChoice]);
-                choicesCopy[randomChoice].picked = true;
+                console.log(filteredChoices[randomChoice]);
+                filteredChoices[randomChoice].picked = true;
 
-                name = choicesCopy[randomChoice].name;
+                name = filteredChoices[randomChoice].name;
+                choicesCopy = filteredChoices;
                 console.log("Name: " + name);
             }
             //     choiceEl.innerHTML = `<li class="choice">
