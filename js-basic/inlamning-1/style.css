@@ -45,6 +45,16 @@ footer {
     margin-top: 30px;
 }
 
+.game .status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game .status > * {
+    margin: 5px 20px;
+}
+
 .game .imgContainer {
     width: 600px;
 

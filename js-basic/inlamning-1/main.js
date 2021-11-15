@@ -6,6 +6,10 @@ const choicesEl = document.querySelector("#choices");
 
 const cheatEl = document.querySelector("#cheat");
 
+const totalGuessesEl = document.querySelector(".totalGuesses");
+
+const progressEl = document.querySelector(".progress");
+
 const choices = [
     { name: "Sarah", url: "./images/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" },
     {
@@ -33,6 +37,8 @@ const choices = [
         url: "https://i.natgeofe.com/n/9135ca87-0115-4a22-8caf-d1bdef97a814/75552_square.jpg",
     },
 ];
+
+let guesses = 0;
 
 let choicesEditable = choices.map((obj) => {
     return { name: obj.name, url: obj.url };
@@ -105,15 +111,14 @@ const toggleGameScreen = () => {
 };
 
 const checkGuess = (clickedEl, id) => {
+    guesses++;
+    totalGuessesEl.innerText = `${guesses} guesses`;
     if (clickedEl.value === choicesEditable[randomizedChoice].name) {
-        //do next round
-        console.log("FILTER::");
-        // console.table(
-        //     choicesEditable.filter((choice) => choice.name !== clickedEl.value)
-        // );
-        // choicesEditable = choicesEditable.filter(
-        //     (choice) => choice.name !== clickedEl.value
-        // );
+        //do next round'
+        let progress = Math.round(
+            (1 - (choicesEditable.length - 1) / choices.length) * 100
+        );
+        progressEl.innerText = `${progress}% complete`;
 
         choicesEditable = choicesEditable
             .map((choice) => {
