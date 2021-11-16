@@ -20,9 +20,9 @@ console.log("ticker started");
 */
 
 const clockWrapperEl = document.querySelector(".clock-wrapper");
-const clock = false;
+const clock = true; //change this to false for countdown
 
-let seconds = 3602; // gets current timestamp when this line was executed
+let seconds = 60; // gets current timestamp when this line was executed
 // console.log("Hour:", now.getHours());
 // console.log("Minute:", now.getMinutes());
 // console.log("Second:", now.getSeconds());
