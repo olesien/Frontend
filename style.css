@@ -149,3 +149,14 @@ footer {
 		width: 90%;
 	}
 }
+
+@media screen and (max-width: 700px) {
+	.game #choices {
+		flex-flow: column nowrap;
+	}
+
+	.game #choices .choice {
+		width: 90%;
+		margin-bottom: 20px;
+	}
+}
