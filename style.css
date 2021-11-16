@@ -144,4 +144,8 @@ footer {
 	.game #choices {
 		width: 90%;
 	}
+
+	.game .imgContainer {
+		width: 90%;
+	}
 }
