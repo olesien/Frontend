@@ -156,5 +156,3 @@ const choices = [
 		url: "images/students/wiktoria-dobrzewinska.jpg",
 	},
 ];
-
-export default choices;

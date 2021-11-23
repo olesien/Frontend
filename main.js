@@ -14,8 +14,7 @@ const comparedToLastRoundEl = document.querySelector(".comparedToLastRound");
 
 const resultsEl = document.querySelector("#results");
 
-//list of names
-import choices from "./choices.js";
+//all choices are used from choices.js
 
 //a log of all guesses this game, used for the view results
 const choiceLog = [];
