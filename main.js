@@ -14,6 +14,8 @@ const comparedToLastRoundEl = document.querySelector(".comparedToLastRound");
 
 const resultsEl = document.querySelector("#results");
 
+const buttonCount = 4;
+
 //all choices are used from choices.js
 
 //a log of all guesses this game, used for the view results
@@ -68,20 +70,18 @@ const toggleGameScreen = () => {
 	//Comment below line in or out to get a cheat text for testing
 	cheatEl.innerText = choicesEditable[randomizedChoice].name;
 
-	//Check for all HTML elements with the class choice, and make a list from them to iterate over
-	let choiceArray = Array.from(game.getElementsByClassName("choice"));
-
 	//because one copy isn't enough :)
 	let choicesCopy = setChoicesEditable();
-
-	//This will randomize where the selected array index is placed
-	let placementIndex = getRandomInt(choiceArray.length);
 
 	//Clean the choices
 	choicesEl.innerHTML = "";
 
+	//This will randomize where the selected array index is placed
+	let placementIndex = getRandomInt(buttonCount);
+
 	//map through the choices
-	const choiceElementMap = choiceArray.map((choiceEl, index) => {
+	//index will indicate how many choices you have, anything other than 4 might break the page
+	for (let index = 0; index < buttonCount; index++) {
 		let name = "";
 		if (placementIndex === index) {
 			//In every run through, the randomized choice must appear. This checks if that is the randomized index
@@ -105,14 +105,18 @@ const toggleGameScreen = () => {
 			choicesCopy = filteredChoices;
 		}
 		//update the html in said LI
-		choiceEl.innerHTML = `
-            <input type="button" value="${name}" class="choiceButton" id="choice-${
+		// choiceEl.innerHTML = `
+		//     <input type="button" value="${name}" class="choiceButton" id="choice-${
+		// 	index + 1
+		// }">`;
+		// return choiceEl;
+		choicesEl.innerHTML += `
+            <li class="choice"><input type="button" value="${name}" class="choiceButton" id="choice-${
 			index + 1
-		}">`;
-		return choiceEl;
-	});
+		}"></li>`;
+	}
 	//put the pieces together, choicesElementMap will simply be an array with HTML that looks like above
-	choiceElementMap.forEach((choice) => choicesEl.appendChild(choice));
+	//choiceElementMap.forEach((choice) => choicesEl.appendChild(choice));
 };
 
 //Check a guess that the user made, is it right or wrong?
