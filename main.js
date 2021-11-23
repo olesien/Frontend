@@ -207,7 +207,11 @@ gameContainer.addEventListener("click", (e) => {
 
 	if (classListEl.contains("resultsBtn")) {
 		//See results of active match
-		console.log("results");
+		if (resultsEl.innerHTML != "") {
+			//hide
+			resultsEl.innerHTML = "";
+			return;
+		}
 		showResults();
 		return;
 	}
