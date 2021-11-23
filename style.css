@@ -21,13 +21,6 @@ header {
 	margin: 10px;
 }
 
-footer {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	padding: 10px;
-}
-
 .introduction .startGame {
 	border: none;
 	background-color: rgb(14, 81, 250);
@@ -73,6 +66,11 @@ footer {
 .game #results li img {
 	width: 100%;
 	height: auto;
+}
+
+.game .comparedToLastRound {
+	text-align: center;
+	padding: 20px;
 }
 
 .game .imgContainer {
@@ -138,6 +136,13 @@ footer {
 #gameContainer .incorrect-guess:hover {
 	cursor: default;
 	background-color: red;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 10px;
 }
 
 @media screen and (max-width: 900px) {

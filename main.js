@@ -104,7 +104,7 @@ const toggleGameScreen = () => {
 			name = filteredChoices[randomChoice].name;
 			choicesCopy = filteredChoices;
 		}
-		//update the html
+		//update the html in said LI
 		choiceEl.innerHTML = `
             <input type="button" value="${name}" class="choiceButton" id="choice-${
 			index + 1
