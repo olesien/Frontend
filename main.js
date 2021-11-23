@@ -195,6 +195,7 @@ gameContainer.addEventListener("click", (e) => {
 
 	if (classListEl.contains("restartBtn")) {
 		//Restart button is pressed, reset and rerender
+		resultsEl.innerHTML = "";
 		choicesEditable = setChoicesEditable();
 		totalGuessesEl.innerText = "0 guesses";
 		progressEl.innerText = "0% progress";

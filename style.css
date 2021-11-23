@@ -44,6 +44,10 @@ header {
 	align-items: center;
 }
 
+.game #cheat {
+	text-align: center;
+}
+
 .game .status > * {
 	margin: 5px 20px;
 }
@@ -63,7 +67,8 @@ header {
 .game #results {
 	list-style: none;
 	display: flex;
-	max-width: 100%;
+	max-width: 1000px;
+	margin: auto;
 	justify-content: center;
 	align-items: center;
 	flex-flow: row wrap;
@@ -148,13 +153,6 @@ header {
 #gameContainer .incorrect-guess:hover {
 	cursor: default;
 	background-color: red;
-}
-
-footer {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	padding: 10px;
 }
 
 @media screen and (max-width: 900px) {
