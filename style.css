@@ -48,6 +48,18 @@ header {
 	margin: 5px 20px;
 }
 
+.game .status input {
+	border: none;
+	color: white;
+	padding: 10px 15px;
+	background-color: rgb(22, 22, 22);
+}
+
+.game .status input:hover {
+	cursor: pointer;
+	background-color: rgb(63, 63, 63);
+}
+
 .game #results {
 	list-style: none;
 	display: flex;
