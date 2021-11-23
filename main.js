@@ -74,51 +74,63 @@ const toggleGameScreen = () => {
 	//because one copy isn't enough :)
 	let choicesCopy = setChoicesEditable();
 
+	//This will randomize where the selected array index is placed
 	let placementIndex = getRandomInt(choiceArray.length);
+
+	//Clean the choices
 	choicesEl.innerHTML = "";
 
+	//map through the choices
 	const choiceElementMap = choiceArray.map((choiceEl, index) => {
 		let name = "";
 		if (placementIndex === index) {
+			//In every run through, the randomized choice must appear. This checks if that is the randomized index
+			//The name and image of the "right" person will thus appear on this index
 			game.querySelector("img").src = choicesEditable[randomizedChoice].url;
 			name = choicesEditable[randomizedChoice].name;
 		} else {
+			//Should be a "wrong" choice
+			//remove all those in the array that have already been picked
 			let filteredChoices = choicesCopy.filter(
 				(choice) =>
 					!choice?.picked == true &&
 					choice.name !== choicesEditable[randomizedChoice].name
 			);
-			console.log(filteredChoices);
+			//pick one in array
 			let randomChoice = getRandomInt(filteredChoices.length);
-			console.log(filteredChoices[randomChoice]);
-			console.table(filteredChoices);
+			//make sure it doesn't get picked again
 			filteredChoices[randomChoice].picked = true;
-
+			//set the wrong name
 			name = filteredChoices[randomChoice].name;
 			choicesCopy = filteredChoices;
-			console.log("Name: " + name);
 		}
+		//update the html
 		choiceEl.innerHTML = `
             <input type="button" value="${name}" class="choiceButton" id="choice-${
 			index + 1
 		}">`;
 		return choiceEl;
 	});
+	//put the pieces together, choicesElementMap will simply be an array with HTML that looks like above
 	choiceElementMap.forEach((choice) => choicesEl.appendChild(choice));
-
-	//choiceElementMap.forEach()
 };
 
-const checkGuess = (clickedEl, id) => {
+//Check a guess that the user made, is it right or wrong?
+const checkGuess = (clickedEl) => {
 	guesses++;
+	//Set how many total guesses you hae done so far this match
 	totalGuessesEl.innerText = `${guesses} guesses`;
+
+	//The guess was correct!
 	if (clickedEl.value === choicesEditable[randomizedChoice].name) {
 		//do next round
-		//better than last round?
+		//check how many guesses you did wrong last wrong for comparison (if its not the first round)
 		let failedGuessesLastRound =
 			choiceLog.length != 0
 				? choiceLog[choiceLog.length - 1].failedGuesses
 				: failedGuesses;
+
+		//How well did you do?
 		if (failedGuesses > failedGuessesLastRound) {
 			//worse
 			comparedToLastRoundEl.innerText = "That was worse than last round!";
@@ -129,18 +141,22 @@ const checkGuess = (clickedEl, id) => {
 			//same
 			comparedToLastRoundEl.innerText = "";
 		}
+		//Add to log
 		choiceLog.push({
 			...choicesEditable[randomizedChoice],
 			round: 1,
 			failedGuesses: failedGuesses,
 		});
 
+		//reset active failed guesses
 		failedGuesses = 0;
+		//Check what progress you have (% of all persons guessed total)
 		let progress = Math.round(
 			(1 - (choicesEditable.length - 1) / choices.length) * 100
 		);
 		progressEl.innerText = `${progress}% complete`;
 
+		//reset choices
 		choicesEditable = choicesEditable
 			.map((choice) => {
 				return {
@@ -151,39 +167,47 @@ const checkGuess = (clickedEl, id) => {
 			.filter((choice) => choice.name !== clickedEl.value);
 		console.log(choicesEditable);
 
+		//render
 		toggleGameScreen();
 	} else if (!clickedEl.classList.contains("incorrect-guess")) {
+		//wrong guess
 		clickedEl.classList.add("incorrect-guess");
 		failedGuesses++;
 	}
 };
 
+//Add event listener to the entire game container, then check what is clicked later
 gameContainer.addEventListener("click", (e) => {
 	const clickedEl = e.target;
 	classListEl = clickedEl.classList;
 	if (classListEl.contains("startGame")) {
+		//Is start game button, rerender screen and hide introduction
 		toggleGameScreen();
 		introduction.classList.toggle("hideElement");
 		game.classList.toggle("showElement");
 		return;
 	}
 	if (classListEl.contains("choiceButton")) {
-		let id = Number(clickedEl.id[clickedEl.id.length - 1]);
-		checkGuess(clickedEl, id);
+		//Check if guess what right
+		checkGuess(clickedEl);
 		return;
 	}
 
 	if (classListEl.contains("restartBtn")) {
+		//Restart button is pressed, reset and rerender
 		choicesEditable = setChoicesEditable();
 		totalGuessesEl.innerText = "0 guesses";
 		progressEl.innerText = "0% progress";
 		//clear logs
 		choiceLog.splice(0, choiceLog.length);
 		toggleGameScreen();
+		return;
 	}
 
 	if (classListEl.contains("resultsBtn")) {
+		//See results of active match
 		console.log("results");
 		showResults();
+		return;
 	}
 });
