@@ -133,14 +133,16 @@ header {
 }
 
 .game .choice input {
-    width: 90%;
+    width: 91%;
     border: none;
-    background-color: aqua;
-    padding: 10px;
+    background-color: rgb(203, 203, 203);
+
+    padding: 15px 1px;
 }
 
 .game .choice input:hover {
-    background-color: aquamarine;
+    background-color: rgb(131, 159, 230);
+
     cursor: pointer;
 }
 
@@ -154,6 +156,7 @@ header {
 
 #gameContainer .incorrect-guess {
     background-color: red;
+    color: white;
 }
 
 #gameContainer .incorrect-guess:hover {
