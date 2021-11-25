@@ -1,177 +1,195 @@
 * {
-	margin: 0;
+    margin: 0;
 }
 
 body {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 header {
-	background-color: rgb(225, 225, 225);
-	padding: 15px;
-	text-align: center;
+    background-color: rgb(225, 225, 225);
+    padding: 15px;
+    text-align: center;
 }
 
 .introduction {
-	text-align: center;
-	margin-top: 50px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 .introduction > * {
-	margin: 10px;
+    margin: 10px;
 }
 
 .introduction .startGame {
-	border: none;
-	background-color: rgb(14, 81, 250);
-	color: white;
-	padding: 10px;
+    border: none;
+    background-color: rgb(14, 81, 250);
+    color: white;
+    padding: 10px;
 }
 
 .introduction .startGame:hover {
-	cursor: pointer;
-	background-color: rgb(0, 65, 230);
+    cursor: pointer;
+    background-color: rgb(0, 65, 230);
 }
 
 .game {
-	display: none;
-	margin-top: 30px;
+    display: none;
+    margin-top: 30px;
 }
 
 .game .status {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .game #cheat {
-	text-align: center;
+    text-align: center;
 }
 
-.game .status > * {
-	margin: 5px 20px;
+.game .status div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game .status div > * {
+    margin: 5px 20px;
 }
 
 .game .status input {
-	border: none;
-	color: white;
-	padding: 10px 15px;
-	background-color: rgb(22, 22, 22);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    background-color: rgb(22, 22, 22);
 }
 
 .game .status input:hover {
-	cursor: pointer;
-	background-color: rgb(63, 63, 63);
+    cursor: pointer;
+    background-color: rgb(63, 63, 63);
 }
 
 .game #results {
-	list-style: none;
-	display: flex;
-	max-width: 1000px;
-	margin: auto;
-	justify-content: center;
-	align-items: center;
-	flex-flow: row wrap;
+    list-style: none;
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
 }
 
 .game #results li {
-	width: 100px;
-	padding: 10px;
-	margin: 10px;
+    width: 100px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .game #results li img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .game .comparedToLastRound {
-	text-align: center;
-	padding: 20px;
+    text-align: center;
+    padding: 20px;
 }
 
 .game .imgContainer {
-	width: 600px;
+    width: 750px;
 
-	margin: auto;
+    margin: auto;
 }
 
 .game .imgContainer img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .game ul {
-	margin: 0;
-	padding-inline-start: 0;
+    margin: 0;
+    padding-inline-start: 0;
 }
 .game ul li {
-	list-style: none;
-	margin: 0;
+    list-style: none;
+    margin: 0;
 }
 
 .game #choices {
-	display: flex;
-	width: 600px;
-	margin: auto;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
+    display: flex;
+    width: 750px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .game #choices .choice {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .game .choice input {
-	width: 90%;
-	border: none;
-	background-color: aqua;
-	padding: 10px;
+    width: 90%;
+    border: none;
+    background-color: aqua;
+    padding: 10px;
 }
 
 .game .choice input:hover {
-	background-color: aquamarine;
-	cursor: pointer;
+    background-color: aquamarine;
+    cursor: pointer;
 }
 
 #gameContainer .hideElement {
-	display: none;
+    display: none;
 }
 
 #gameContainer .showElement {
-	display: block;
+    display: block;
 }
 
 #gameContainer .incorrect-guess {
-	background-color: red;
+    background-color: red;
 }
 
 #gameContainer .incorrect-guess:hover {
-	cursor: default;
-	background-color: red;
+    cursor: default;
+    background-color: red;
 }
 
-@media screen and (max-width: 900px) {
-	.game #choices {
-		width: 90%;
-	}
+@media screen and (max-width: 1000px) {
+    .game #choices {
+        width: 90%;
+    }
 
-	.game .imgContainer {
-		width: 90%;
-	}
+    .game .imgContainer {
+        width: 90%;
+    }
 }
 
-@media screen and (max-width: 700px) {
-	.game #choices {
-		flex-flow: column nowrap;
-	}
+@media screen and (max-width: 800px) {
+    .game #choices {
+        flex-flow: column nowrap;
+    }
 
-	.game #choices .choice {
-		width: 90%;
-		margin-bottom: 20px;
-	}
+    .game #choices .choice {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .game .status {
+        display: flex;
+        justify-content: center;
+        flex-flow: wrap row;
+    }
+
+    .game .status div {
+        width: 80%;
+    }
 }
