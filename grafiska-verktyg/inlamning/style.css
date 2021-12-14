@@ -1,0 +1,266 @@
+:root {
+    --blue: #2819ff;
+    --lightblue: #aae6ff;
+    --pink: #fa1996;
+    --lightpink: #ffafe1;
+    --purple: #870aa0;
+    --lightpurple: #cd9bd7;
+    --lightsky: #aae6ff;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: "Arial";
+}
+
+header {
+    background-color: #e1e1e1;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+}
+
+header > * {
+    padding: 20px;
+}
+
+header .logo {
+    flex: 2;
+    justify-content: flex-start;
+    display: flex;
+}
+
+header .language {
+    flex: 1;
+    justify-content: flex-end;
+    display: flex;
+}
+
+header nav {
+    flex: 1;
+    justify-content: flex-end;
+    display: flex;
+}
+
+.navbar {
+    display: none;
+}
+
+header .hamburger-container i {
+    font-size: 20px;
+}
+
+main > * {
+    padding: 10px;
+}
+
+main .hero {
+    padding: 0;
+}
+
+.hero img {
+    width: 100%;
+}
+
+.option-list {
+    list-style: none;
+    display: flex;
+    margin-inline-start: 0;
+    padding-inline-start: 0;
+    margin-block-end: 0;
+    margin: 10px 0;
+}
+
+.option-list .option {
+    background-color: var(--blue);
+    color: white;
+    padding: 5px;
+    margin: 0 0.6rem;
+    flex: 1;
+}
+
+.option-list .option:hover {
+    cursor: pointer;
+}
+
+.option > :nth-child(odd) {
+    padding: 5px;
+}
+
+.option > :nth-child(even) {
+    text-align: right;
+    padding: 5px;
+    padding-top: 20px;
+}
+
+.usps {
+    padding: 10px;
+}
+
+.usp {
+    background-color: #e1e1e1;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.usp h2 {
+    text-align: center;
+    padding: 10px;
+}
+
+.reviews {
+    padding: 20px;
+}
+
+.review {
+    display: flex;
+    align-items: center;
+}
+
+.review:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.review .img-container img {
+    width: 90px;
+    padding: 5px;
+}
+
+.review .text-wrapper {
+    background-color: var(--lightblue);
+    padding: 10px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.review .text-wrapper .author {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.step {
+    display: flex;
+}
+
+.step .img-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.step .text-container {
+    flex: 1;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.step:nth-child(even) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.video iframe {
+    width: 450px;
+    height: 250px;
+}
+
+.back-to-top {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.back-to-top button {
+    background-color: var(--pink);
+    border: none;
+    padding: 10px 15px;
+    color: white;
+}
+
+.back-to-top button:hover {
+    cursor: pointer;
+    background-color: var(--purple);
+}
+
+footer .subscribe {
+    background-color: var(--lightsky);
+    text-align: center;
+}
+
+footer .subscribe h3 {
+    padding: 10px;
+}
+
+footer .subscribe div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+footer input {
+    border: none;
+    margin: 0;
+    padding: 10px;
+}
+
+footer .subscribe input[type="email"] {
+    width: 200px;
+}
+
+footer .subscribe input[type="submit"] {
+    background-color: var(--pink);
+    margin-left: 10px;
+    color: white;
+}
+
+footer .links {
+    background-color: var(--blue);
+    color: white;
+    padding: 20px;
+}
+
+footer .links ul {
+    list-style: none;
+}
+
+footer .links ul li {
+    padding-top: 15px;
+}
+
+footer .links ul li p {
+    font-size: 1.4em;
+    display: inline;
+}
+
+footer .links ul li a {
+    color: white;
+    text-decoration: none;
+}
+footer .links ul li .fa-greater-than {
+    padding-left: 10px;
+    font-size: 1em;
+}
+
+footer .social-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+
+footer .social-media li {
+    display: inline;
+    padding: 10px;
+    margin: 0 20px;
+}
+
+footer .social-media li {
+    font-size: 60px;
+}
