@@ -61,6 +61,15 @@ header nav a:hover {
     text-decoration: underline;
 }
 
+header nav li {
+    cursor: pointer;
+}
+
+.subnav {
+    visibility: hidden;
+    display: none;
+}
+
 header .hide-nav {
     border: none;
     background: none;
@@ -397,7 +406,6 @@ footer .social-media li {
     }
 
     .navbar .link-container .link {
-        color: black;
         text-decoration: none;
         position: relative;
         display: block;
@@ -441,6 +449,20 @@ footer .social-media li {
         flex-direction: column;
     }
 
+    .link-container {
+        margin: 10px;
+        color: var(--blue);
+    }
+
+    .subnav a {
+        padding: 2px;
+        text-align: left;
+    }
+
+    .link-container ul .link {
+        color: var(--blue);
+    }
+
     /* HIDE STUFF */
     header #hide-logo {
         visibility: hidden;
@@ -457,6 +479,10 @@ footer .social-media li {
     /* header .logo {
     visibility: hidden;
 } */
+    header .navbar .show .subnav {
+        visibility: visible;
+        display: block;
+    }
 }
 
 @media only screen and (min-width: 1000px) {
@@ -501,6 +527,38 @@ footer .social-media li {
 
     .hamburger-container {
         display: none;
+    }
+
+    /* NAV */
+
+    .link-container {
+        color: var(--blue);
+        position: relative;
+    }
+    .subnav {
+        position: absolute;
+        transition: all 0.5s ease;
+        background-color: var(--purple);
+        color: white;
+        padding: 1rem;
+        width: 250px;
+
+        list-style: none;
+    }
+
+    .subnav li {
+        margin-top: 1rem;
+    }
+    .subnav a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem;
+    }
+
+    .subnav:hover,
+    .link-container:hover > .subnav {
+        visibility: visible;
+        display: block;
     }
 }
 
