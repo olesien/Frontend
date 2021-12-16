@@ -442,8 +442,8 @@ footer .social-media li {
         top: 0;
         right: 0;
         width: 70%;
-        padding: 20px;
-        font-size: 1.4em;
+        padding: 10px;
+        font-size: 1.3em;
         background-color: white;
         list-style: none;
         flex-direction: column;
@@ -517,8 +517,8 @@ footer .social-media li {
     .navbar {
         display: flex;
         z-index: 10;
-        padding: 10px;
-        font-size: 1.3em;
+        padding: 20px;
+        font-size: 1.4em;
         background-color: white;
         list-style: none;
         flex-direction: row;
