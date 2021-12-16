@@ -7,7 +7,7 @@ const options = document.querySelectorAll(".option");
 const payList = document.querySelectorAll(".pay");
 
 hamburgerBtn.addEventListener("click", () => {
-    logo.id = "show-logo";
+    logo.id = "hide-logo";
     hideNavBtn.id = "show-hide-nav";
     navbarContainer.id = "show-navbar-container";
 });

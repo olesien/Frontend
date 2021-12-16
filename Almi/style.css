@@ -27,18 +27,22 @@ header {
     width: 100%;
 }
 
-header > * {
-    padding: 20px;
-}
-
 header .logo {
     flex: 2;
     justify-content: flex-start;
     display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 150px;
+    margin: 5px;
+    height: auto;
 }
 
 header .language {
     flex: 1;
+    padding-right: 20px;
     justify-content: flex-end;
     display: flex;
 }
@@ -228,14 +232,11 @@ main .hero {
 .review .text-wrapper {
     background-color: var(--lightblue);
     padding: 10px;
-    padding-bottom: 30px;
-    position: relative;
 }
 
 .review .text-wrapper .author {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
+    text-align: right;
+    padding: 5px;
 }
 
 .step {
@@ -389,13 +390,14 @@ footer .social-media li {
 
     header .hamburger-container i {
         font-size: 20px;
+        padding-right: 20px;
     }
 
     .navbar-container {
         position: fixed;
         /* this */
         display: none;
-        top: 60px;
+        top: 78px;
         left: 0;
         z-index: 9;
         width: 100%;
@@ -455,7 +457,7 @@ footer .social-media li {
 
     header nav {
         position: fixed;
-        top: 37px;
+        top: 70px;
         left: 0;
         display: inline-block;
         width: 100%;
