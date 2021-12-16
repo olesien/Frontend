@@ -6,6 +6,8 @@ const navbarContainer = document.querySelector(".navbar-container");
 const options = document.querySelectorAll(".option");
 const payList = document.querySelectorAll(".pay");
 
+const backToTopBtn = document.querySelector("#back-to-top");
+
 hamburgerBtn.addEventListener("click", () => {
     logo.id = "hide-logo";
     hideNavBtn.id = "show-hide-nav";
@@ -32,4 +34,8 @@ options.forEach((option, index) => {
             payList[index].classList.toggle("hide");
         }
     });
+});
+
+backToTopBtn.addEventListener("click", () => {
+    document.documentElement.scrollTop = 0;
 });
