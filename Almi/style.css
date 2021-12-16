@@ -369,6 +369,10 @@ footer .social-media li {
 /* MEDIA QUERIES FOR SCREEN SIZE */
 
 @media only screen and (max-width: 500px) {
+    .options {
+        padding: 2px;
+        font-size: 14px;
+    }
     .option-list {
         margin: 5px 0;
     }
