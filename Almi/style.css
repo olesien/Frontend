@@ -368,6 +368,16 @@ footer .social-media li {
 
 /* MEDIA QUERIES FOR SCREEN SIZE */
 
+@media only screen and (max-width: 500px) {
+    .option-list {
+        margin: 5px 0;
+    }
+
+    .option-list .option {
+        margin: 0 0.3rem;
+    }
+}
+
 @media only screen and (max-width: 1000px) {
     header .hide-nav img {
         width: 35px;
