@@ -454,6 +454,10 @@ footer .social-media li {
         color: var(--blue);
     }
 
+    .subnav {
+        font-size: 0.9em;
+    }
+
     .subnav a {
         padding: 2px;
         text-align: left;
