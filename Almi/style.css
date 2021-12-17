@@ -186,6 +186,10 @@ main .hero {
 	display: block;
 }
 
+.pay .content button:hover {
+	cursor: pointer;
+}
+
 .pay .content h3 {
 	text-align: center;
 	padding-bottom: 10px;
