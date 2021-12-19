@@ -57,6 +57,11 @@ const toggleGameScreen = () => {
     //If there is no length left in the editable array, the user must have won!
     if (choicesEditable.length == 0) {
         alert("You win");
+
+        //Game is over afterall!
+        game.querySelector(".rightImage").src = "";
+        choicesEl.innerHTML = "";
+
         //should toggle results
         showResults();
         return;
@@ -86,7 +91,7 @@ const toggleGameScreen = () => {
         if (placementIndex === index) {
             //In every run through, the randomized choice must appear. This checks if that is the randomized index
             //The name and image of the "right" person will thus appear on this index
-            game.querySelector("img").src =
+            game.querySelector(".rightImage").src =
                 choicesEditable[randomizedChoice].url;
             name = choicesEditable[randomizedChoice].name;
         } else {
@@ -123,6 +128,9 @@ const toggleGameScreen = () => {
 //Check a guess that the user made, is it right or wrong?
 const checkGuess = (clickedEl) => {
     guesses++;
+
+    //remove results screen
+    resultsEl.innerHTML = "";
     //Set how many total guesses you hae done so far this match
     totalGuessesEl.innerText = `${guesses} guesses`;
 

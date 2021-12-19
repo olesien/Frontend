@@ -97,7 +97,7 @@ header {
 }
 
 .game .imgContainer {
-    width: 750px;
+    width: 550px;
 
     margin: auto;
 }
@@ -164,19 +164,25 @@ header {
     background-color: red;
 }
 
-@media screen and (max-width: 1000px) {
-    .game #choices {
-        width: 90%;
-    }
-
+@media screen and (max-width: 1400px) {
     .game .imgContainer {
-        width: 90%;
+        width: 450px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .game .imgContainer {
+        width: 400px;
     }
 }
 
 @media screen and (max-width: 800px) {
+    .game .imgContainer {
+        width: 90%;
+    }
     .game #choices {
         flex-flow: column nowrap;
+        width: 90%;
     }
 
     .game #choices .choice {
