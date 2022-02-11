@@ -1,0 +1,7 @@
+<%- include('partials/header', {title: "jokes"}) %>
+    <p>User: <%= userId %></p>
+    <p>Name: <%= user.name.title%> <%= user.name.first%> <%= user.name.last%></p>
+    <p>City:<%= user.location.city%> </p>
+    <p>Email:<%= user.email%> </p>
+    
+<%- include('partials/footer') %>

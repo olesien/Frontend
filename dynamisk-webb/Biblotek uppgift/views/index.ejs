@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+    <main>
+        <p>Titles</p>
+        <form class="searchBar"><input type="text" placeholder="Search for any title..."><input type="submit"></form>
+        <ul>
+            <% titles.forEach( (title) => { %>
+            <p><%=title.title%></p>
+        <%})%> 
+        </ul>
+    </main>
+<%- include('partials/footer') %>
