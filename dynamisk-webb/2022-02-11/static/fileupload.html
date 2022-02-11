@@ -8,9 +8,10 @@
 </head>
 <body>
     <h1>Fileupload</h1>
-    <form action="/upload" method="get">
-        <input type="file" name="myFile" id="">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="myFile" id=""><br><br>
         <input type="submit" value="Upload">
     </form>
+    <br>
 </body>
 </html>
