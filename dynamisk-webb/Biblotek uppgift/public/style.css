@@ -1,0 +1,12 @@
+* {
+    font-size: 1.05em;
+    margin: 0;
+}
+
+main {
+    background-color: #f0f0f0;
+    margin: auto;
+    width: 1000px;
+    padding: 1rem;
+}
+

@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+    <p>index <%= name %></p>
+    <ul>
+        <% users.forEach((user, index) => {%>
+            <a href="/users/<%=index%>">
+        <li><%= user.name.first + " " + user.name.last%></li>
+    </a>
+        <% })%>
+    </ul>
+    <img src="/images/Cat_img.jpg" alt="">
+<%- include('partials/footer') %>
