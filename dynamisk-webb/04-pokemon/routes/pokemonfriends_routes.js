@@ -2,13 +2,11 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-	res.send("GET not implemented");
-});
+const pokemonfriends_controllers = require("../controllers/pokemonfriends_controllers");
 
-router.get("/:id", (req, res) => {
-	res.send("GET " + req.params.id);
-});
+router.get("/", pokemonfriends_controllers.read);
+
+router.get("/:id", pokemonfriends_controllers.read);
 
 router.post("/", (req, res) => {
 	res.send("Post not yet implemented");
