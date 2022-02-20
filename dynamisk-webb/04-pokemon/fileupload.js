@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const multer = require("multer");
+const morgan = require("morgan");
 
 app.use(express.static("static"));
 

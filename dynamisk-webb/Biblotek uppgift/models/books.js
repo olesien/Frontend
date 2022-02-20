@@ -1,7 +1,7 @@
 const bookshelf = require("./bookshelf");
 
-const PokemonCards = bookshelf.model("pokemoncards", {
-	tableName: "pokemoncards",
+const books = bookshelf.model("books", {
+    tableName: "books",
 });
 
-module.exports = PokemonCards;
+module.exports = books;

@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-	res.send("OK");
+    res.send("OK");
 });
 
-router.use("/authors", require("./authors_routes"));
-router.use("/books", require("./books_routes"));
+router.use("/pokemoncards", require("./pokemoncards_routes"));
+router.use("/pokemonfriends", require("./pokemonfriends_routes"));
 router.use("/pokemonbattles", require("./pokemonbattles_routes"));
 
 module.exports = router;
