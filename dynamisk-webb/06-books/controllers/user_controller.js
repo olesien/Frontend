@@ -2,8 +2,9 @@
  * User Controller
  */
 
-const debug = require('debug')('books:user_controller');
-const models = require('../models');
+const debug = require("debug")("books:user_controller");
+const models = require("../models");
+const { matchedData, validationResult } = require("express-validator");
 
 /**
  * Get all resources
@@ -14,12 +15,12 @@ const index = async (req, res) => {
 	const all_users = await models.User.fetchAll();
 
 	res.send({
-		status: 'success',
+		status: "success",
 		data: {
-			users: all_users
-		}
+			users: all_users,
+		},
 	});
-}
+};
 
 /**
  * Get a specific resource
@@ -27,16 +28,17 @@ const index = async (req, res) => {
  * GET /:userId
  */
 const show = async (req, res) => {
-	const user = await new models.User({ id: req.params.userId })
-		.fetch({ withRelated: ['books'] });
+	const user = await new models.User({ id: req.params.userId }).fetch({
+		withRelated: ["books"],
+	});
 
 	res.send({
-		status: 'success',
+		status: "success",
 		data: {
 			user,
-		}
+		},
 	});
-}
+};
 
 /**
  * Store a new resource
@@ -44,32 +46,37 @@ const show = async (req, res) => {
  * POST /
  */
 const store = async (req, res) => {
-	const data = {
-		username: req.body.username,
-		password: req.body.password,
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-	};
+	// check for any validation errors
+	debug(req.body);
+	const errors = validationResult(req);
+	debug(errors);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	console.log("The validated data:", validData);
 
 	try {
-		const user = await new models.User(data).save();
+		const user = await new models.User(validData).save();
 		debug("Created new user successfully: %O", user);
 
 		res.send({
-			status: 'success',
+			status: "success",
 			data: {
 				user,
 			},
 		});
-
 	} catch (error) {
 		res.status(500).send({
-			status: 'error',
-			message: 'Exception thrown in database when creating a new user.',
+			status: "error",
+			message: "Exception thrown in database when creating a new user.",
 		});
 		throw error;
 	}
-}
+};
 
 /**
  * Update a specific resource
@@ -78,14 +85,24 @@ const store = async (req, res) => {
  */
 const update = async (req, res) => {
 	const userId = req.params.userId;
+	debug(req.body);
+	const errors = validationResult(req);
+	debug(errors);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
 
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	console.log("The validated data:", validData);
 	// make sure user exists
 	const user = await new models.User({ id: userId }).fetch({ require: false });
 	if (!user) {
 		debug("User to update was not found. %o", { id: userId });
 		res.status(404).send({
-			status: 'fail',
-			data: 'User Not Found',
+			status: "fail",
+			data: "User Not Found",
 		});
 		return;
 	}
@@ -112,20 +129,19 @@ const update = async (req, res) => {
 		debug("Updated user successfully: %O", updatedUser);
 
 		res.send({
-			status: 'success',
+			status: "success",
 			data: {
 				user,
 			},
 		});
-
 	} catch (error) {
 		res.status(500).send({
-			status: 'error',
-			message: 'Exception thrown in database when updating a new user.',
+			status: "error",
+			message: "Exception thrown in database when updating a new user.",
 		});
 		throw error;
 	}
-}
+};
 
 /**
  * Destroy a specific resource
@@ -134,10 +150,10 @@ const update = async (req, res) => {
  */
 const destroy = (req, res) => {
 	res.status(405).send({
-		status: 'fail',
-		message: 'Method Not Allowed.',
+		status: "fail",
+		message: "Method Not Allowed.",
 	});
-}
+};
 
 module.exports = {
 	index,
@@ -145,4 +161,4 @@ module.exports = {
 	store,
 	update,
 	destroy,
-}
+};

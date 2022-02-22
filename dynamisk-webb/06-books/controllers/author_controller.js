@@ -2,8 +2,10 @@
  * Author Controller
  */
 
-const debug = require('debug')('books:author_controller');
-const models = require('../models');
+const debug = require("debug")("books:author_controller");
+const models = require("../models");
+
+const { matchedData, validationResult } = require("express-validator");
 
 /**
  * Get all resources
@@ -14,12 +16,12 @@ const index = async (req, res) => {
 	const all_authors = await models.Author.fetchAll();
 
 	res.send({
-		status: 'success',
+		status: "success",
 		data: {
-			authors: all_authors
-		}
+			authors: all_authors,
+		},
 	});
-}
+};
 
 /**
  * Get a specific resource
@@ -27,16 +29,17 @@ const index = async (req, res) => {
  * GET /:authorId
  */
 const show = async (req, res) => {
-	const author = await new models.Author({ id: req.params.authorId })
-		.fetch({ withRelated: ['books'] });
+	const author = await new models.Author({ id: req.params.authorId }).fetch({
+		withRelated: ["books"],
+	});
 
 	res.send({
-		status: 'success',
+		status: "success",
 		data: {
 			author,
-		}
+		},
 	});
-}
+};
 
 /**
  * Store a new resource
@@ -50,25 +53,36 @@ const store = async (req, res) => {
 		birthyear: req.body.birthyear,
 	};
 
+	debug(req.body);
+	const errors = validationResult(req);
+	debug(errors);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	console.log("The validated data:", validData);
+
 	try {
 		const author = await new models.Author(data).save();
 		debug("Created new author successfully: %O", author);
 
 		res.send({
-			status: 'success',
+			status: "success",
 			data: {
 				author,
 			},
 		});
-
 	} catch (error) {
 		res.status(500).send({
-			status: 'error',
-			message: 'Exception thrown in database when creating a new author.',
+			status: "error",
+			message: "Exception thrown in database when creating a new author.",
 		});
 		throw error;
 	}
-}
+};
 
 /**
  * Update a specific resource
@@ -76,11 +90,22 @@ const store = async (req, res) => {
  * POST /:authorId
  */
 const update = (req, res) => {
+	debug(req.body);
+	const errors = validationResult(req);
+	debug(errors);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	console.log("The validated data:", validData);
 	res.status(405).send({
-		status: 'fail',
-		message: 'Method Not Allowed.',
+		status: "fail",
+		message: "Method Not Allowed.",
 	});
-}
+};
 
 /**
  * Destroy a specific resource
@@ -89,10 +114,10 @@ const update = (req, res) => {
  */
 const destroy = (req, res) => {
 	res.status(405).send({
-		status: 'fail',
-		message: 'Method Not Allowed.',
+		status: "fail",
+		message: "Method Not Allowed.",
 	});
-}
+};
 
 module.exports = {
 	index,
@@ -100,4 +125,4 @@ module.exports = {
 	store,
 	update,
 	destroy,
-}
+};

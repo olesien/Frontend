@@ -2,8 +2,10 @@
  * Book Controller
  */
 
-const debug = require('debug')('books:book_controller');
-const models = require('../models');
+const debug = require("debug")("books:book_controller");
+const models = require("../models");
+
+const { matchedData, validationResult } = require("express-validator");
 
 /**
  * Get all resources
@@ -14,12 +16,12 @@ const index = async (req, res) => {
 	const all_books = await models.Book.fetchAll();
 
 	res.send({
-		status: 'success',
+		status: "success",
 		data: {
-			books: all_books
-		}
+			books: all_books,
+		},
 	});
-}
+};
 
 /**
  * Get a specific resource
@@ -27,16 +29,17 @@ const index = async (req, res) => {
  * GET /:bookId
  */
 const show = async (req, res) => {
-	const book = await new models.Book({ id: req.params.bookId })
-		.fetch({ withRelated: ['author', 'users'] });
+	const book = await new models.Book({ id: req.params.bookId }).fetch({
+		withRelated: ["author", "users"],
+	});
 
 	res.send({
-		status: 'success',
+		status: "success",
 		data: {
 			book,
-		}
+		},
 	});
-}
+};
 
 /**
  * Store a new resource
@@ -51,25 +54,36 @@ const store = async (req, res) => {
 		author_id: req.body.author_id,
 	};
 
+	debug(req.body);
+	const errors = validationResult(req);
+	debug(errors);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	console.log("The validated data:", validData);
+
 	try {
 		const book = await new models.Book(data).save();
 		debug("Created new book successfully: %O", book);
 
 		res.send({
-			status: 'success',
+			status: "success",
 			data: {
 				book,
 			},
 		});
-
 	} catch (error) {
 		res.status(500).send({
-			status: 'error',
-			message: 'Exception thrown in database when creating a new book.',
+			status: "error",
+			message: "Exception thrown in database when creating a new book.",
 		});
 		throw error;
 	}
-}
+};
 
 /**
  * Update a specific resource
@@ -77,11 +91,22 @@ const store = async (req, res) => {
  * POST /:bookId
  */
 const update = (req, res) => {
+	debug(req.body);
+	const errors = validationResult(req);
+	debug(errors);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	console.log("The validated data:", validData);
 	res.status(405).send({
-		status: 'fail',
-		message: 'Method Not Allowed.',
+		status: "fail",
+		message: "Method Not Allowed.",
 	});
-}
+};
 
 /**
  * Destroy a specific resource
@@ -90,10 +115,10 @@ const update = (req, res) => {
  */
 const destroy = (req, res) => {
 	res.status(405).send({
-		status: 'fail',
-		message: 'Method Not Allowed.',
+		status: "fail",
+		message: "Method Not Allowed.",
 	});
-}
+};
 
 module.exports = {
 	index,
@@ -101,4 +126,4 @@ module.exports = {
 	store,
 	update,
 	destroy,
-}
+};
