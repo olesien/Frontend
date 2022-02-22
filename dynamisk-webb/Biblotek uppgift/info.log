@@ -3,3 +3,16 @@
 15:48:51 [32minfo[39m INFO/ERR Server started at port 3000
 [15:54:33] [[32minfo[39m] [INFO/ERR] [Server started at port 3000]
 [15:54:49] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:16:29] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:17:24] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:17:35] [[32minfo[39m] [INFO/ERR] All users fetched[{"id":1,"firstname":"Linus","lastname":"Lindberg","age":19,"childOf":2,"reservations":[]},{"id":2,"firstname":"Max","lastname":"Goranson","age":50,"childOf":null,"reservations":[]}]
+[09:17:45] [[32minfo[39m] [INFO/ERR] All users fetched[{"id":1,"firstname":"Linus","lastname":"Lindberg","age":19,"childOf":2,"reservations":[]},{"id":2,"firstname":"Max","lastname":"Goranson","age":50,"childOf":null,"reservations":[]}]
+[09:20:39] [[32minfo[39m] [INFO/ERR] author successfully saved{"id":4,"firstname":null,"lastname":null}
+[09:22:15] [[32minfo[39m] [INFO/ERR] author successfully saved{"id":5,"firstname":null,"lastname":null}
+[09:23:40] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:25:51] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:35:57] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:36:50] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:37:31] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:39:43] [[32minfo[39m] [INFO/ERR] Server started at port 3000
+[09:40:32] [[32minfo[39m] [INFO/ERR] Server started at port 3000
