@@ -2,7 +2,7 @@
  * Profile Controller
  */
 
-const debug = require("debug")("books:profile_controller");
+const debug = require("debug")("gallery:album_controller");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 const bcrypt = require("bcrypt");

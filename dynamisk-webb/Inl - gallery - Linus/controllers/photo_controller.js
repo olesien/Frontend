@@ -2,7 +2,7 @@
  * Book Controller
  */
 
-const debug = require("debug")("books:book_controller");
+const debug = require("debug")("gallery:photo_controller");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 

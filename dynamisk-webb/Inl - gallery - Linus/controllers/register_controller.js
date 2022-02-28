@@ -4,7 +4,7 @@
 
 const bcrypt = require("bcrypt");
 
-const debug = require("debug")("books:register_controller");
+const debug = require("debug")("gallery:register_controller");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 
