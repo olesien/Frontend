@@ -1,8 +1,8 @@
 /**
- * User Controller
+ * Author Controller
  */
 
-const debug = require('debug')('books:user_controller');
+const debug = require('debug')('books:author_controller');
 const { matchedData, validationResult } = require('express-validator');
 const models = require('../models');
 
@@ -12,12 +12,12 @@ const models = require('../models');
  * GET /
  */
 const index = async (req, res) => {
-	const all_users = await models.User.fetchAll();
+	const all_authors = await models.Author.fetchAll();
 
 	res.send({
 		status: 'success',
 		data: {
-			users: all_users
+			authors: all_authors
 		}
 	});
 }
@@ -25,16 +25,16 @@ const index = async (req, res) => {
 /**
  * Get a specific resource
  *
- * GET /:userId
+ * GET /:authorId
  */
 const show = async (req, res) => {
-	const user = await new models.User({ id: req.params.userId })
+	const author = await new models.Author({ id: req.params.authorId })
 		.fetch({ withRelated: ['books'] });
 
 	res.send({
 		status: 'success',
 		data: {
-			user,
+			author,
 		}
 	});
 }
@@ -54,23 +54,21 @@ const store = async (req, res) => {
 	// get only the validated data from the request
 	const validData = matchedData(req);
 
-	console.log("The validated data:", validData);
-
 	try {
-		const user = await new models.User(validData).save();
-		debug("Created new user successfully: %O", user);
+		const author = await new models.Author(validData).save();
+		debug("Created new author successfully: %O", author);
 
 		res.send({
 			status: 'success',
 			data: {
-				user,
+				author,
 			},
 		});
 
 	} catch (error) {
 		res.status(500).send({
 			status: 'error',
-			message: 'Exception thrown in database when creating a new user.',
+			message: 'Exception thrown in database when creating a new author.',
 		});
 		throw error;
 	}
@@ -79,18 +77,18 @@ const store = async (req, res) => {
 /**
  * Update a specific resource
  *
- * POST /:userId
+ * PUT /:authorId
  */
 const update = async (req, res) => {
-	const userId = req.params.userId;
+	const authorId = req.params.authorId;
 
-	// make sure user exists
-	const user = await new models.User({ id: userId }).fetch({ require: false });
-	if (!user) {
-		debug("User to update was not found. %o", { id: userId });
+	// make sure author exists
+	const author = await new models.Author({ id: authorId }).fetch({ require: false });
+	if (!author) {
+		debug("Author to update was not found. %o", { id: authorId });
 		res.status(404).send({
 			status: 'fail',
-			data: 'User Not Found',
+			data: 'Author Not Found',
 		});
 		return;
 	}
@@ -105,20 +103,20 @@ const update = async (req, res) => {
 	const validData = matchedData(req);
 
 	try {
-		const updatedUser = await user.save(validData);
-		debug("Updated user successfully: %O", updatedUser);
+		const updatedAuthor = await author.save(validData);
+		debug("Updated author successfully: %O", updatedAuthor);
 
 		res.send({
 			status: 'success',
 			data: {
-				user,
+				author,
 			},
 		});
 
 	} catch (error) {
 		res.status(500).send({
 			status: 'error',
-			message: 'Exception thrown in database when updating a new user.',
+			message: 'Exception thrown in database when updating a new author.',
 		});
 		throw error;
 	}
@@ -127,7 +125,7 @@ const update = async (req, res) => {
 /**
  * Destroy a specific resource
  *
- * DELETE /:userId
+ * DELETE /:authorId
  */
 const destroy = (req, res) => {
 	res.status(405).send({
