@@ -15,8 +15,8 @@ module.exports = (bookshelf) => {
 		{
 			hashSaltRounds: 10,
 
-			async fetchUser(userId) {
-				return await new this({ id: userId }).fetch({ require: false });
+			async fetchUser(userId, fetchOptions = {}) {
+				return await new this({ id: userId }).fetch(fetchOptions);
 			},
 
 			async login(username, password) {

@@ -114,12 +114,14 @@ const getBooks = async (req, res) => {
 	 * and get their books
 	 */
 
-	const user = await models.User.fetchUser(req.user.user_id);
+	const user = await models.User.fetchUser(req.user.user_id, {
+		withRelated: ["books"],
+	});
 
 	res.status(200).send({
 		status: "success",
 		data: {
-			books: user.related("books"),
+			books: user,
 		},
 	});
 };
