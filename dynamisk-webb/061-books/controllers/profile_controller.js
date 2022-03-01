@@ -7,9 +7,9 @@ const debug = require("debug")("books:profile_controller");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
 
-const fetchUser = async (userId) => {
-	return await new models.User({ id: userId }).fetch({});
-};
+// const fetchUser = async (userId) => {
+// 	return await new models.User({ id: userId }).fetch({});
+// };
 
 /**
  * Get authenticated user's profile
@@ -27,7 +27,10 @@ const getProfile = async (req, res) => {
 	try {
 		//const user = await User.fetchById(req.user.user_id);
 
-		const user = await fetchUser(req.user.user_id);
+		// const user = await fetchUser(req.user.user_id);
+		// models.User.fetchUser(req.user.user_id);
+
+		const user = await models.User.fetchUser(req.user.user_id);
 
 		res.send({
 			status: "success",
@@ -73,7 +76,7 @@ const updateProfile = async (req, res) => {
 	}
 
 	try {
-		const user = await fetchUser(req.user.user_id);
+		const user = await models.User.fetchUser(req.user.user_id);
 		const updatedUser = await user.save(validData);
 		debug("Updated user successfully: %O", updatedUser);
 
@@ -111,7 +114,7 @@ const getBooks = async (req, res) => {
 	 * and get their books
 	 */
 
-	const user = await fetchUser(req.user.user_id);
+	const user = await models.User.fetchUser(req.user.user_id);
 
 	res.status(200).send({
 		status: "success",
