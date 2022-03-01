@@ -13,12 +13,27 @@ const models = require("../models");
  * GET /
  */
 const getProfile = async (req, res) => {
-	res.send({
-		status: "success",
-		data: {
-			user: req.user,
-		},
-	});
+	/**
+	 * @todo req.user is now a simple object with the payload.
+	 * Query the database for a User with the id `req.user.user_id`,
+	 * and return the result.
+	 */
+
+	try {
+		//const user = await User.fetchById(req.user.user_id);
+
+		const user = await new models.User({ id: req.user.user_id }).fetch({});
+
+		res.send({
+			status: "success",
+			data: {
+				user,
+			},
+		});
+	} catch (error) {
+		debug(error);
+		return res.sendStatus(404);
+	}
 };
 
 /**
@@ -53,7 +68,8 @@ const updateProfile = async (req, res) => {
 	}
 
 	try {
-		const updatedUser = await req.user.save(validData);
+		const user = await new models.User({ id: req.user.user_id }).fetch({});
+		const updatedUser = await user.save(validData);
 		debug("Updated user successfully: %O", updatedUser);
 
 		res.send({
@@ -82,12 +98,20 @@ const getBooks = async (req, res) => {
 	// 	.fetch({ withRelated: ['books'] });
 
 	// "lazy load" the books-relation
-	await req.user.load("books");
+	// await req.user.load('books');
+
+	/**
+	 * @todo req.user is now a simple object with the payload
+	 * query database for a User with the id `req.user.user_id`,
+	 * and get their books
+	 */
+
+	const user = await new models.User({ id: req.user.user_id }).fetch({});
 
 	res.status(200).send({
 		status: "success",
 		data: {
-			books: req.user.related("books"),
+			books: user.related("books"),
 		},
 	});
 };

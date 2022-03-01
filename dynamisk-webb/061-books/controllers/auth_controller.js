@@ -4,10 +4,9 @@
 
 const bcrypt = require("bcrypt");
 const debug = require("debug")("books:auth_controller");
+const jwt = require("jsonwebtoken");
 const { matchedData, validationResult } = require("express-validator");
 const models = require("../models");
-
-const jwt = require("jsonwebtoken");
 
 /**
  * Login a user, sign a JWT token and return it
@@ -19,33 +18,34 @@ const jwt = require("jsonwebtoken");
  * }
  */
 const login = async (req, res) => {
-	// check if a user with the username exists
-	debug("reached here");
-	const user = await models.User.login(req.body.username, req.body.password);
+	// destructure username and password from request body
+	const { username, password } = req.body;
+
+	// login the user
+	const user = await models.User.login(username, password);
 	if (!user) {
 		return res.status(401).send({
 			status: "fail",
-			data: "auth failed",
+			data: "Authentication failed.",
 		});
 	}
-	//construct jwt payload
+
+	// construct jwt payload
 	const payload = {
 		sub: user.get("username"),
 		user_id: user.get("id"),
 		name: user.get("first_name") + " " + user.get("last_name"),
 	};
 
-	//sign payload and get access token
-	const access_token = jwt.sign(payload, "shhh");
+	// sign payload and get access-token
+	const access_token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
 
-	//respond with access token
-
-	debug("reached here 2");
-
+	// respond with the access-token
 	return res.send({
 		status: "success",
 		data: {
 			access_token,
+			//			access_token: access_token,
 		},
 	});
 };
@@ -102,6 +102,6 @@ const register = async (req, res) => {
 };
 
 module.exports = {
-	register,
 	login,
+	register,
 };
