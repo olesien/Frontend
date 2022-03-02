@@ -8,10 +8,38 @@ const models = require("../models");
 /**
  * Create user validation rules
  *
- * Required: title
- * Optional: -
+ * Required:
+ * email
+ * password
+ * first_name
+ * last_name
  */
-const createRules = [body("title").exists().isLength({ min: 4 })];
+const registerRules = [
+	body("email").exists().isEmail().normalizeEmail(),
+	body("password").exists().isLength({ min: 5 }).escape(),
+	body("first_name").exists().isLength({ min: 2 }).escape(),
+	body("last_name").exists().isLength({ min: 2 }).escape(),
+];
+
+/**
+ *Refresh request validation rules
+ *
+ * Required:
+ * refresh token
+ */
+const refreshRules = [body("token").exists().isLength({ min: 10 })];
+
+/**
+ * Login user validation rules
+ *
+ * Required:
+ * email
+ * password
+ */
+const loginRules = [
+	body("email").exists().isEmail().normalizeEmail(),
+	body("password").exists().isLength({ min: 5 }).escape(),
+];
 
 /**
  * Update user validation rules
@@ -22,6 +50,8 @@ const createRules = [body("title").exists().isLength({ min: 4 })];
 const updateRules = [body("title").optional().isLength({ min: 4 })];
 
 module.exports = {
-	createRules,
+	registerRules,
+	refreshRules,
+	loginRules,
 	updateRules,
 };

@@ -1,0 +1,11 @@
+core functions --
+TASK 1: GET - request to work to :/ (initial) / boilerplate --DONE
+TASK 2: Using template, get users renamed --DONE
+TASK 3: POST - REGISTRATION of new users -- DONE
+TASK 4: POST: LOGIN - start
+TASK 5: AUTH (bcrypt / JWT)
+
+pictures (core) --
+TASK 1: GET /pictures
+
+

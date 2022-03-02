@@ -10,12 +10,12 @@ router.get("/", userController.index);
 router.get("/:userId", userController.show);
 
 /* Store a new resource */
-router.post("/", userValidationRules.createRules, userController.store);
+//router.post("/", userValidationRules.createRules, userController.store);
 
 /* Update a specific resource */
-router.put("/:userId", userValidationRules.updateRules, userController.update);
+//router.put("/:userId", userValidationRules.updateRules, userController.update);
 
 /* Destroy a specific resource */
-router.delete("/:userId", userController.destroy);
+//router.delete("/:userId", userController.destroy);
 
 module.exports = router;
