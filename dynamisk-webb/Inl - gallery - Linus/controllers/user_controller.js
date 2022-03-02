@@ -1,10 +1,10 @@
 /**
- * Example Controller
+ * user Controller
  */
 
-const debug = require('debug')('books:example_controller');
-const { matchedData, validationResult } = require('express-validator');
-const models = require('../models');
+const debug = require("debug")("books:user_controller");
+const { matchedData, validationResult } = require("express-validator");
+const models = require("../models");
 
 /**
  * Get all resources
@@ -12,28 +12,27 @@ const models = require('../models');
  * GET /
  */
 const index = async (req, res) => {
-	const examples = await models.Example.fetchAll();
+	const users = await models.User.fetchAll();
 
 	res.send({
-		status: 'success',
-		data: examples,
+		status: "success",
+		data: users,
 	});
-}
+};
 
 /**
  * Get a specific resource
  *
- * GET /:exampleId
+ * GET /:userId
  */
 const show = async (req, res) => {
-	const example = await new models.Example({ id: req.params.exampleId })
-		.fetch();
+	const user = await new models.User({ id: req.params.userId }).fetch();
 
 	res.send({
-		status: 'success',
-		data: example,
+		status: "success",
+		data: user,
 	});
-}
+};
 
 /**
  * Store a new resource
@@ -44,45 +43,46 @@ const store = async (req, res) => {
 	// check for any validation errors
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(422).send({ status: 'fail', data: errors.array() });
+		return res.status(422).send({ status: "fail", data: errors.array() });
 	}
 
 	// get only the validated data from the request
 	const validData = matchedData(req);
 
 	try {
-		const example = await new models.Example(validData).save();
-		debug("Created new example successfully: %O", example);
+		const user = await new models.User(validData).save();
+		debug("Created new user successfully: %O", user);
 
 		res.send({
-			status: 'success',
-			data: example,
+			status: "success",
+			data: user,
 		});
-
 	} catch (error) {
 		res.status(500).send({
-			status: 'error',
-			message: 'Exception thrown in database when creating a new example.',
+			status: "error",
+			message: "Exception thrown in database when creating a new user.",
 		});
 		throw error;
 	}
-}
+};
 
 /**
  * Update a specific resource
  *
- * PUT /:exampleId
+ * PUT /:userId
  */
 const update = async (req, res) => {
-	const exampleId = req.params.exampleId;
+	const userId = req.params.userId;
 
-	// make sure example exists
-	const example = await new models.Example({ id: exampleId }).fetch({ require: false });
-	if (!example) {
-		debug("Example to update was not found. %o", { id: exampleId });
+	// make sure user exists
+	const user = await new models.User({ id: userId }).fetch({
+		require: false,
+	});
+	if (!user) {
+		debug("user to update was not found. %o", { id: userId });
 		res.status(404).send({
-			status: 'fail',
-			data: 'Example Not Found',
+			status: "fail",
+			data: "User Not Found",
 		});
 		return;
 	}
@@ -90,41 +90,41 @@ const update = async (req, res) => {
 	// check for any validation errors
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(422).send({ status: 'fail', data: errors.array() });
+		return res.status(422).send({ status: "fail", data: errors.array() });
 	}
 
 	// get only the validated data from the request
 	const validData = matchedData(req);
 
 	try {
-		const updatedExample = await example.save(validData);
-		debug("Updated example successfully: %O", updatedExample);
+		const updatedUser = await user.save(validData);
+		debug("Updated user successfully: %O", updatedUser);
 
 		res.send({
-			status: 'success',
-			data: example,
+			status: "success",
+			data: user,
 		});
-
 	} catch (error) {
 		res.status(500).send({
-			status: 'error',
-			message: 'Exception thrown in database when updating a new example.',
+			status: "error",
+			message: "Exception thrown in database when updating a new user.",
 		});
 		throw error;
 	}
-}
+};
 
 /**
  * Destroy a specific resource
  *
- * DELETE /:exampleId
+ * DELETE /:userId
  */
 const destroy = (req, res) => {
 	res.status(400).send({
-		status: 'fail',
-		message: 'You need to write the code for deleting this resource yourself.',
+		status: "fail",
+		message:
+			"You need to write the code for deleting this resource yourself.",
 	});
-}
+};
 
 module.exports = {
 	index,
@@ -132,4 +132,4 @@ module.exports = {
 	store,
 	update,
 	destroy,
-}
+};
