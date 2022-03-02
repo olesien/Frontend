@@ -148,10 +148,12 @@ const addBook = async (req, res) => {
 	const validData = matchedData(req);
 
 	// lazy-load book relationship
-	await req.user.load("books");
-
+	//await req.user.load("books");
+	const user = await models.User.fetchUser(req.user.user_id, {
+		withRelated: ["books"],
+	});
 	// get the user's books
-	const books = req.user.related("books");
+	const books = user.related("books");
 
 	// check if book is already in the user's list of books
 	const existing_book = books.find((book) => book.id == validData.book_id);
