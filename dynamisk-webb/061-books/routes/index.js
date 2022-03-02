@@ -16,6 +16,9 @@ router.use("/profile", auth.validateJwtToken, require("./profile"));
 // login a user and get a JWT token
 router.post("/login", authController.login);
 
+//refresh token
+router.post("/refresh", authController.refresh);
+
 // register a new user
 router.post("/register", [
 	userValidationRules.createRules,
