@@ -161,12 +161,28 @@ const update = async (req, res) => {
  *
  * DELETE /:photoId
  */
-const destroy = (req, res) => {
-	res.status(400).send({
-		status: "fail",
-		message:
-			"You need to write the code for deleting this resource yourself.",
-	});
+const destroy = async (req, res) => {
+	try {
+		const photo = await new models.Photo({
+			id: req.params.photoId,
+			user_id: req.user.user_id,
+		}).fetch();
+
+		const deleted_photo = await photo.destroy(photo);
+
+		//note: delete relations too!
+
+		res.status(500).send({
+			status: "success",
+			message: deleted_photo,
+		});
+	} catch (error) {
+		debug(error);
+		res.status(500).send({
+			status: "error",
+			message: "Failed to delete photo!",
+		});
+	}
 };
 
 module.exports = {

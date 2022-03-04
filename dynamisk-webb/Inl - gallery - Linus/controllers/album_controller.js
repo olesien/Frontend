@@ -1,0 +1,263 @@
+/**
+ * album Controller
+ */
+
+const debug = require("debug")("albums:album_controller");
+const { matchedData, validationResult } = require("express-validator");
+const models = require("../models");
+
+/**
+ * Get all resources
+ *
+ * GET /
+ */
+const index = async (req, res) => {
+	debug(req.user.user_id);
+	try {
+		const albums = await models.Album.query({
+			where: {
+				user_id: req.user.user_id,
+			},
+		}).fetchAll([(require = false)]);
+
+		console.log(albums);
+		res.send({
+			status: "success",
+			data: albums,
+		});
+	} catch (error) {
+		debug(error);
+		res.status(500).send({
+			status: "error",
+			message: "The user likely does not have any albums yet",
+		});
+	}
+};
+
+/**
+ * NOTE: Only intended for testing
+ * Get a specific resource
+ *
+ * GET /:albumId
+ */
+const show = async (req, res) => {
+	try {
+		// const album = await new models.Album({
+		// 	id: req.params.albumId,
+		// 	user_id: req.user.user_id,
+		// }).fetch();
+		const album = await models.Album.fetchPhotos(
+			req.user.user_id,
+			req.params.albumId,
+			{
+				withRelated: ["photos"],
+			}
+		);
+		res.send({
+			status: "success",
+			data: album,
+		});
+	} catch (error) {
+		debug(error);
+		console.log(error);
+		res.status(500).send({
+			status: "error",
+			message:
+				"The album with that id could not be found, or the user does not have permission to view it",
+		});
+	}
+};
+
+/**
+ * Store a new resource
+{
+  "title": "Confetti album #1",
+  "url": "https://images.unsplash.com/album-1492684223066-81342ee5ff30",
+  "comment": "Confetti"
+}
+ *
+ * POST /
+ */
+const store = async (req, res) => {
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	//add the user id, so that database knows only this user has access to the album
+	validData.user_id = req.user.user_id;
+
+	try {
+		const result = await new models.Album(validData).save();
+		debug("Added album to user successfully: %O", result);
+
+		res.send({
+			status: "success",
+			data: result,
+		});
+	} catch (error) {
+		res.status(500).send({
+			status: "error",
+			message:
+				"Exception thrown in database when adding a album to a user.",
+		});
+		throw error;
+	}
+};
+
+// POST album photo relation
+//18:53:26	insert into `albums_photos` (`album_id`, `photo_id`) values (3, 7)	Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`gallery`.`albums_photos`, CONSTRAINT `albums_photos_ibfk_2` FOREIGN KEY (`photo_id`) REFERENCES `photos` (`id`))	0.000 sec
+
+const storeRelation = async (req, res) => {
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	//add the user id, so that database knows only this user has access to the photo
+	validData.user_id = req.user.user_id;
+
+	// Get the album & photo relation to that album
+	const album = await models.Album.fetchPhotos(
+		req.user.user_id,
+		req.params.albumId,
+		{ withRelated: ["photos"] }
+	);
+
+	//get the photos relation from above album
+	const photos = album.related("photos");
+	//Check if this exact relation already exists, will be falsy or truthy
+
+	//start of for array IF photo_id is an array <- add this to valdiation/album too (allow arrays)
+	const existing_photo = photos.find(
+		(photo) => photo.id == validData.photo_id
+	);
+
+	//if it does not, aka is falsy, throw err
+	if (existing_photo) {
+		return res.send({
+			status: "fail",
+			data: "Photo already exists in this album.",
+		});
+	}
+
+	//end of for array
+
+	//Try and add the photo. If this fails it is probably due to the possible situation where that photo Id does not actually exist
+	try {
+		const result = await album.photos().attach(validData.photo_id);
+		debug("Added photo to album successfully: %O", result);
+
+		res.send({
+			status: "success",
+			data: null,
+		});
+	} catch (error) {
+		res.status(500).send({
+			status: "error",
+			message:
+				"Exception thrown in database when adding a photo to an album. There is likely no photo with this ID!",
+		});
+		throw error;
+	}
+};
+
+/**
+ * Update a specific resource
+ * UPDATE album password etc
+ *
+ * PUT /:albumId
+ */
+const update = async (req, res) => {
+	const albumId = req.params.albumId;
+	debug("above db req");
+	// make sure album exists
+	const album = await new models.Album({
+		id: albumId,
+		user_id: req.user.user_id,
+	}).fetch({
+		require: false,
+	});
+	debug("came to albums");
+	if (!album) {
+		debug("album to update was not found or permissions lacked. %o", {
+			id: albumId,
+		});
+		res.status(404).send({
+			status: "fail",
+			data: "album to update was not found or permissions lacked",
+		});
+		return;
+	}
+
+	// check for any validation errors
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).send({ status: "fail", data: errors.array() });
+	}
+
+	// get only the validated data from the request
+	const validData = matchedData(req);
+
+	try {
+		const updatedalbum = await album.save(validData);
+		debug("Updated album successfully: %O", updatedalbum);
+
+		res.send({
+			status: "success",
+			data: album,
+		});
+	} catch (error) {
+		res.status(500).send({
+			status: "error",
+			message: "Exception thrown in database when updating a new album.",
+		});
+		throw error;
+	}
+};
+
+/**
+ * Destroy a specific resource
+ *
+ * DELETE /:albumId
+ */
+const destroy = async (req, res) => {
+	try {
+		const album = await new models.Album({
+			id: req.params.albumId,
+			user_id: req.user.user_id,
+		}).fetch();
+
+		const deleted_album = await album.destroy(album);
+
+		//note: delete relations too!
+
+		res.status(500).send({
+			status: "success",
+			message: deleted_album,
+		});
+	} catch (error) {
+		debug(error);
+		res.status(500).send({
+			status: "error",
+			message: "Failed to delete album!",
+		});
+	}
+};
+
+module.exports = {
+	index,
+	show,
+	store,
+	storeRelation,
+	update,
+	destroy,
+};

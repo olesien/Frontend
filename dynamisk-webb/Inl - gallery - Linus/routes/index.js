@@ -16,6 +16,9 @@ router.use("/user", auth.validateJwtToken, require("./user"));
 //photos from the user
 router.use("/photos", auth.validateJwtToken, require("./photo"));
 
+//albums from the user
+router.use("/albums", auth.validateJwtToken, require("./album"));
+
 // register a new user
 router.post("/register", [
 	userValidationRules.registerRules,

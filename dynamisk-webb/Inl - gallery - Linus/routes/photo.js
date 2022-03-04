@@ -13,9 +13,13 @@ router.get("/:photoId", photoController.show);
 router.post("/", photoValidationRules.createRules, photoController.store);
 
 /* Update a specific resource */
-router.put("/:photoId", photoValidationRules.updateRules, photoController.update);
+router.put(
+	"/:photoId",
+	photoValidationRules.updateRules,
+	photoController.update
+);
 
 /* Destroy a specific resource */
-//router.delete("/:photoId", photoController.destroy);
+router.delete("/:photoId", photoController.destroy);
 
 module.exports = router;
