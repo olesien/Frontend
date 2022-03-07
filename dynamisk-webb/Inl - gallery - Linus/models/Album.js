@@ -16,7 +16,7 @@ module.exports = (bookshelf) => {
 			async fetchPhotos(userId, id, fetchOptions = {}) {
 				return await new this({ id: userId, id: id }).fetch(
 					fetchOptions
-				);
+				);s
 			},
 		}
 	);

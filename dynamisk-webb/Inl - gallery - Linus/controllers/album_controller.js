@@ -126,26 +126,45 @@ const storeRelation = async (req, res) => {
 	validData.user_id = req.user.user_id;
 
 	// Get the album & photo relation to that album
-	const album = await models.Album.fetchPhotos(
-		req.user.user_id,
-		req.params.albumId,
-		{ withRelated: ["photos"] }
-	);
+	let album;
+	try {
+		album = await models.Album.fetchPhotos(
+			req.user.user_id,
+			req.params.albumId,
+			{ withRelated: ["photos"] }
+		);
+	} catch (error) {
+		return res.send({
+			status: "fail",
+			data: "Album does not exist!",
+		});
+	}
 
 	//get the photos relation from above album
 	const photos = album.related("photos");
 	//Check if this exact relation already exists, will be falsy or truthy
 
 	//start of for array IF photo_id is an array <- add this to valdiation/album too (allow arrays)
-	const existing_photo = photos.find(
-		(photo) => photo.id == validData.photo_id
-	);
+	let photoArray = [];
+	if (Array.isArray(validData.photo_id)) {
+		photoArray = validData.photo_id;
+	} else {
+		photoArray.push(validData.photo_id);
+	}
+	let cancelId = false;
+	photoArray.forEach((photo_id, index) => {
+		const existing_photo = photos.find((photo) => photo.id == photo_id);
 
-	//if it does not, aka is falsy, throw err
-	if (existing_photo) {
+		//if it does not, aka is falsy, throw err
+		if (existing_photo) {
+			cancelId = photo_id;
+		}
+	});
+
+	if (cancelId) {
 		return res.send({
 			status: "fail",
-			data: "Photo already exists in this album.",
+			data: "Photo already exists in this album: " + cancelId,
 		});
 	}
 
@@ -153,8 +172,8 @@ const storeRelation = async (req, res) => {
 
 	//Try and add the photo. If this fails it is probably due to the possible situation where that photo Id does not actually exist
 	try {
-		const result = await album.photos().attach(validData.photo_id);
-		debug("Added photo to album successfully: %O", result);
+		const result = await album.photos().attach(photoArray);
+		debug("Added photo(s) to album successfully: %O", result);
 
 		res.send({
 			status: "success",
@@ -166,7 +185,6 @@ const storeRelation = async (req, res) => {
 			message:
 				"Exception thrown in database when adding a photo to an album. There is likely no photo with this ID!",
 		});
-		throw error;
 	}
 };
 
@@ -231,24 +249,86 @@ const update = async (req, res) => {
  */
 const destroy = async (req, res) => {
 	try {
-		const album = await new models.Album({
-			id: req.params.albumId,
-			user_id: req.user.user_id,
-		}).fetch();
+		const album = await models.Album.fetchPhotos(
+			req.user.user_id,
+			req.params.albumId,
+			{ withRelated: ["photos"] }
+		);
 
+		const photos = album.related("photos");
+
+		// const deleted_photo = await photos.destroy(photos);
+
+		const id_array = photos.map((photo, index) => photo.id);
+		const deleted_photo = await album.photos().detach(id_array);
+
+		//Here I want to detect all photo album relations, and destroy them!
 		const deleted_album = await album.destroy(album);
 
 		//note: delete relations too!
 
 		res.status(500).send({
 			status: "success",
-			message: deleted_album,
+			message: { deleted_album, deleted_photo },
 		});
 	} catch (error) {
-		debug(error);
+		console.log(error);
 		res.status(500).send({
 			status: "error",
 			message: "Failed to delete album!",
+		});
+	}
+};
+
+//req.params.albumId, req.params.photoId
+const destroyRelation = async (req, res) => {
+	// check for any validation errors
+	const photo_id = req.params.photoId;
+	// Get the album & photo relation to that album
+	let album;
+	try {
+		album = await models.Album.fetchPhotos(
+			req.user.user_id,
+			req.params.albumId,
+			{ withRelated: ["photos"] }
+		);
+	} catch (error) {
+		return res.send({
+			status: "fail",
+			data: "Album does not exist!",
+		});
+	}
+
+	//get the photos relation from above album
+	const photos = album.related("photos");
+
+	const existing_photo = photos.find((photo) => photo.id == photo_id);
+
+	//if it does not, aka is falsy, throw err
+	if (!existing_photo) {
+		return res.send({
+			status: "fail",
+			data: "Photo does not exist in this album: " + photo_id,
+		});
+	}
+	console.log(photo_id);
+	console.log(photos);
+
+	//Try and add the photo. If this fails it is probably due to the possible situation where that photo Id does not actually exist
+	try {
+		const result = await album.photos().detach(photo_id);
+		debug("Removed phtoo from album: %O", result);
+
+		res.send({
+			status: "success",
+			data: null,
+		});
+	} catch (error) {
+		console.log(error);
+		res.status(500).send({
+			status: "error",
+			message:
+				"Exception thrown in database when adding a photo to an album. There is likely no photo with this ID!",
 		});
 	}
 };
@@ -260,4 +340,5 @@ module.exports = {
 	storeRelation,
 	update,
 	destroy,
+	destroyRelation,
 };

@@ -163,10 +163,28 @@ const update = async (req, res) => {
  */
 const destroy = async (req, res) => {
 	try {
-		const photo = await new models.Photo({
-			id: req.params.photoId,
-			user_id: req.user.user_id,
-		}).fetch();
+		// const photo = await new models.Photo({
+		// 	id: req.params.photoId,
+		// 	user_id: req.user.user_id,
+		// }).fetch();
+
+		//Get the album and its relation.
+		const photo = await models.Photo.fetchAlbums(
+			req.user.user_id,
+			req.params.photoId,
+			{ withRelated: ["albums"] }
+		);
+
+		console.log(photo);
+
+		const albums = photo.related("albums");
+
+		// const deleted_photo = await photos.destroy(photos);
+
+		const id_array = albums.map((album, index) => album.id);
+		console.log(id_array);
+
+		const deleted_album = await photo.albums().detach(id_array);
 
 		const deleted_photo = await photo.destroy(photo);
 
@@ -174,10 +192,10 @@ const destroy = async (req, res) => {
 
 		res.status(500).send({
 			status: "success",
-			message: deleted_photo,
+			message: { deleted_photo, deleted_album },
 		});
 	} catch (error) {
-		debug(error);
+		console.log(error);
 		res.status(500).send({
 			status: "error",
 			message: "Failed to delete photo!",

@@ -18,14 +18,17 @@ router.post(
 	albumController.storeRelation
 );
 
-/* Update a specific resource */
+/* Update album */
 router.put(
 	"/:albumId",
 	albumValidationRules.updateRules,
 	albumController.update
 );
 
-/* Destroy a specific resource */
+/* Destroy album & its relations */
 router.delete("/:albumId", albumController.destroy);
+
+/* Destroy photo relation */
+router.delete("/:albumId/photos/:photoId", albumController.destroyRelation);
 
 module.exports = router;

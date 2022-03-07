@@ -10,11 +10,11 @@ TASK 1: GET /pictures
 
 
 -- THINGS LEFT
-4. DEL /pictures/:pictureId <- Delete the relations too
+4. DEL /pictures/:pictureId <- Delete the relations too --- DONE ---
 
 X1. GET /albums/:albumId <- Get photos relation --- DONE ---
-5. DEL /albums/:pictureId <- Delete the relations too
+X5. DEL /albums/:pictureId <- Delete the relations too --- DONE ---
 X2. POST /albums/:albumId/photos <- Add photo relation --- DONE ---
-2.5 POST /albums/:albumId/photos <- Allow for arrays!
-3. DELETE /albums/:albumId/photos/:photoId <- albumid/photoid params required, delete one relation
+X2.5 POST /albums/:albumId/photos <- Allow for arrays! --- DONE ---
+X3. DELETE /albums/:albumId/photos/:photoId <- albumid/photoid params required, delete one relation --- DONE ---
 6. clean up code
