@@ -31,17 +31,22 @@
 					<h2 id="chat-title">Chat</h2>
 					<div id="message-wrapper">
 						<!-- here is chat -->
-						<ul id="messages">
-							<li>Haj Kaj</li>
-							<li>Hallå Börje</li>
-							<li>Omg you two, shut up</li>
-						</ul>
+						<ul id="messages"></ul>
 						<!-- /#messages -->
+					</div>
+					<div id="typing-wrapper">
+						<ul id="typing"></ul>
 					</div>
 					<!-- /#messages-wrapper -->
 
 					<form id="message-form">
 						<div class="input-group">
+							<input
+								type="text"
+								id="user"
+								class="form-control-alt"
+								placeholder="Enter name"
+							/>
 							<input
 								type="text"
 								id="message"
