@@ -1,33 +1,41 @@
+/**
+ * Socket Controller
+ */
+
 const debug = require("debug")("chat:socket_controller");
 
-module.exports = function (socket) {
-	debug("A new client has connected", socket.id);
+//list of sockets ids and hteir usernames
+const users = {};
 
-	socket.emit("welcome", "welcome to chat 3000");
-	socket.broadcast.emit("chat-welcome", {
-		user: socket.id,
-		message: "Joined the chat",
-	});
+module.exports = function (socket) {
+	debug("a new client has connected", socket.id);
+
+	// broadcast that a new user has connected
+	//socket.broadcast.emit("user:connected");
+
+	// handle user disconnect
 	socket.on("disconnect", function () {
-		debug(`Client ${this.id} disconnected :(`);
-		socket.broadcast.emit("chat-goodbye", {
-			user: this.id,
-			message: "Left the chat",
-		});
+		debug(`Client ${socket.id} disconnected :(`);
+
+		this.broadcast.emit("user:disconnected", users[socket.id]);
+		delete users[socket.id];
 	});
-	socket.on("chat-message", function (data) {
-		debug("Someone did something", data.message);
-		this.emit("chat-message", { user: "You", message: data.message });
-		this.broadcast.emit("chat-message", {
-			user: data.user,
-			message: data.message,
-		});
+	//handle user join
+	socket.on("user:joined", function (username, callback) {
+		//assosciate socket ID with username
+		users[socket.id] = username;
+		socket.broadcast.emit("user:connected", username);
+		debug(`user ${username} with socket id ${socket.id} has joined`);
+		//confirm join
+		callback({ success: true });
 	});
-	socket.on("chat-typing", function (data) {
-		//debug("Someone did something", data.message);
-		this.broadcast.emit("chat-typing", {
-			user: data.user,
-			message: data.message,
-		});
+
+	// handle user emitting a new message
+	socket.on("chat:message", function (data) {
+		debug("Someone said something: ", data);
+
+		data.timestamp = new Date().toISOString();
+		// emit `chat:message` event to everyone EXCEPT the sender
+		this.broadcast.emit("chat:message", data);
 	});
 };
