@@ -3,6 +3,7 @@
  */
 
 const debug = require("debug")("chat:socket_controller");
+const models = require("../models");
 
 //list of sockets ids and hteir usernames
 const users = {};
@@ -37,5 +38,7 @@ module.exports = function (socket) {
 		data.timestamp = new Date().toISOString();
 		// emit `chat:message` event to everyone EXCEPT the sender
 		this.broadcast.emit("chat:message", data);
+		//save message..
+		const message = new models.Message(data);
 	});
 };
