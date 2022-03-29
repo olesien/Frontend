@@ -11,6 +11,26 @@ const onlineUsers = document.querySelector("#online-users");
 
 let username = null;
 
+let room = null;
+
+const userList = (list) => {
+	console.log(Object.values(list));
+	onlineUsers.innerHTML = "";
+	Object.values(list).forEach((username) => {
+		const liEl = document.createElement("li");
+
+		// set class of `li` to `message`
+		liEl.classList.add("user-name");
+
+		//liEl.id = socket.id;
+
+		// set content of `li` element
+		liEl.innerHTML = username;
+
+		onlineUsers.appendChild(liEl);
+	});
+};
+
 const addMessageToChat = (data, ownMsg = false) => {
 	// create new `li` element
 	const liEl = document.createElement("li");
@@ -21,10 +41,12 @@ const addMessageToChat = (data, ownMsg = false) => {
 		liEl.classList.add("you");
 	}
 
+	const time = moment(data.timestamp).format("HH:mm:ss");
+
 	// set content of `li` element
 	liEl.innerHTML = ownMsg
-		? `<span class="timestamp">[${data.timestamp}]</span> : ${data.message}`
-		: `<span class="timestamp">[${data.timestamp}]</span><span class"user"> ${data.username}</span> : ${data.message}`;
+		? `${data.message}`
+		: `<span class="timestamp">[${time}]</span><span class"user"> ${data.username}</span> : ${data.message}`;
 
 	// append `li` element to `#messages`
 	messagesEl.appendChild(liEl);
@@ -43,30 +65,36 @@ const addNoticeToChat = (notice) => {
 	liEl.scrollIntoView();
 };
 
+socket.on("user:list", (list) => {
+	userList(list);
+});
+
 // listen for when a new user connects
 socket.on("user:connected", (username) => {
 	addNoticeToChat(username + " connected");
-
-	const liEl = document.createElement("li");
-
-	// set class of `li` to `message`
-	liEl.classList.add("user-name");
-
-	liEl.id = socket.id;
-
-	// set content of `li` element
-	liEl.innerHTML = username;
-
-	onlineUsers.appendChild(liEl);
 });
 
 // listen for when a user disconnects
 socket.on("user:disconnected", (username) => {
 	addNoticeToChat(username + " disconnected");
-	const userE = onlineUsers.querySelector("#" + socket.id);
-	if (userE) {
-		userE.remove();
-	}
+	// const userE = onlineUsers.querySelector("#" + socket.id);
+	// if (userE) {
+	// 	userE.remove();
+	// }
+});
+
+// listen for when we disconnect
+socket.on("disconnect", (reason) => {
+	// if (reason === "transport close") {
+	// 	socket.connect();
+	// }
+	addNoticeToChat(`You were disonnected for reason ${reason} :(`);
+});
+
+socket.on("reconnect", () => {
+	//join room if u were in chat
+	//socket.emit("user:joined")
+	console.log({ username, room });
 });
 
 // listen for incoming messages
@@ -76,14 +104,15 @@ socket.on("chat:message", (message) => {
 	addMessageToChat(message);
 });
 
-// get username from form and emit user:joined and show chat
+// get username from form and room and emit user:joined and show chat
 usernameForm.addEventListener("submit", (e) => {
 	e.preventDefault();
 
 	username = usernameForm.username.value;
+	room = usernameForm.room.value;
 
 	//emit user joined event and then  after ack show chat
-	socket.emit("user:joined", username, (status) => {
+	socket.emit("user:joined", username, room, (status) => {
 		console.log("server acknowkled that user joined", status);
 		// hide start view
 
@@ -92,6 +121,9 @@ usernameForm.addEventListener("submit", (e) => {
 
 			// show chat view
 			chatWrapperEl.classList.remove("hide");
+
+			console.log(status);
+			userList(status.list);
 
 			// focus on inputMessage
 			messageEl.focus();
@@ -108,11 +140,11 @@ messageForm.addEventListener("submit", (e) => {
 	if (!messageEl.value) {
 		return;
 	}
-
+	const date = new Date();
 	const msg = {
 		username,
 		message: messageEl.value,
-		timestamp: new Date().toISOString(),
+		timestamp: date,
 	};
 
 	// send message to server
