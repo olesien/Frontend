@@ -10,9 +10,8 @@ const app = require("../app");
 const debug = require("debug")("chat:server");
 const http = require("http");
 const socketio = require("socket.io");
-
 const socket_controller = require("../controllers/socket_controller");
-const { instrument } = require("@socket.io/admin-ui");
+const models = require("../models");
 
 /**
  * Get port from environment and store in Express.
@@ -26,27 +25,26 @@ app.set("port", port);
  */
 
 const server = http.createServer(app);
+const io = new socketio.Server(server);
 
-const io = new socketio.Server(server, {
-	cors: {
-		origin: ["https://admin.socket.io"],
-		credentials: true,
-	},
-});
+io.on("connection", require("../controllers/socket_controller"));
 
-instrument(io, {
-	auth: false,
-});
+// COnnect to mongoDB
+models
+	.connect()
+	.then(() => {
+		/**
+		 * Listen on provided port, on all network interfaces.
+		 */
 
-io.on("connection", (socket) => socket_controller(socket, io));
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+		server.listen(port);
+		server.on("error", onError);
+		server.on("listening", onListening);
+	})
+	.catch((error) => {
+		debug("Failed to connect to database:", error);
+		process.exit(1); //exit server
+	});
 
 /**
  * Normalize a port into a number, string, or false.
