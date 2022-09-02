@@ -1,0 +1,126 @@
+body {
+	background-color: #333;
+	color: #f6f6f6;
+	line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+	line-height: 1.5;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+h4 {
+	font-size: 1.25rem;
+}
+
+ul {
+	border: 1px solid #888;
+	list-style-type: square;
+	padding: 0.5rem 1rem;
+	margin-bottom: 1.5rem;
+}
+
+li {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	margin-left: 1rem;
+	padding-left: 0.25rem;
+}
+
+#app {
+	margin-bottom: 2.5rem;
+}
+
+h1 + h2 {
+	margin-top: 0;
+	margin-bottom: 1em;
+}
+
+hr {
+	border-top-color: #888;
+	margin-top: 4rem;
+	margin-bottom: 4rem;
+}
+
+code.var {
+	color: #93E600;
+}
+
+em {
+	color: #93E600;
+}
+
+.help-text {
+	background-color: #444;
+	color: #fff;
+	padding: 1rem 1.5rem;
+	margin-bottom: 1.5rem;
+}
+.help-text ul {
+	margin: -1rem -1.5rem;
+	/* margin-bottom: 0; */
+}
+
+p.important {
+	text-decoration: underline;
+}
+
+.alert *:first-child {
+	margin-top: 0.25rem;
+}
+
+.alert > *:last-child {
+	margin-bottom: 0.5rem;
+}
+
+.answer {
+	background-color: #222;
+	padding: 1rem 1.5rem;
+	margin-bottom: 2.5rem;
+}
+
+.answer.no-output {
+	font-style: italic;
+}
+
+.answer p:last-of-type {
+	margin-bottom: 0;
+}
+
+.answer h4 {
+	margin-top: 0.5em;
+}
+
+.high-five {
+	display: flex;
+	justify-content: center;
+	font-size: 10vw;
+	margin-top: 2.5rem;
+}
+
+.change-me {
+	background-color: red;
+	color: white;
+	padding: 2rem 3rem;
+}
+
+.highlight {
+	background-color: lime;
+	color: #111;
+	display: inline-block;
+	padding: 0.2rem 0.65rem;
+}
+
+.btn-surprise {
+	background-color: deeppink;
+	color: white;
+}
+.btn-surprise:hover {
+	background-color: hotpink;
+	color: white;
+}

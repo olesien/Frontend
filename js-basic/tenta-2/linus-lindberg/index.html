@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>JavaScript 1, tenta 2</title>
+
+	<link rel="stylesheet" href="assets/animate.min.css">
+	<link rel="stylesheet" href="assets/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+	<div id="app" class="container">
+
+		<h1 class="site-title">JavaScript 1, tenta 2</h1>
+		<h2 class="site-subtitle">Praktiska uppgifter</h2>
+
+		<div class="alert alert-info" id="instructions">
+			<h2>Instruktioner</h2>
+
+			<p>Till varje uppgift nedan finns en tillhörande .js-fil där du ska skriva ditt svar. Där finns också överst i varje fil mer detaljerade instruktioner.</p>
+
+			<p>T.ex. för första uppgiften så finns det array:en som du ska sortera, samt en tom funktion där du ska skriva koden för sortering och returnera den färdig-sorterade array:en.</p>
+
+			<p>Koden för att visa resultatet på HTML-sidan finns redan om det inte uttryckligen står att du själv ska skriva ut svaret i DOM.</p>
+
+			<p class="important">Ni ska alltså <strong>inte</strong> själva kalla på funktionerna om det inte uttrycklingen står i uppgiften!</p>
+
+			<p>Ni får lov att Googla efter t.ex. dokumentation osv. Däremot är det <strong>självklart inte tillåtet</strong> att använda varken Teams, Slack, WhatsApp, Facebook Messenger eller liknande för kommunikation.</p>
+
+			<p>
+				<strong>Max antal poäng:</strong> 60p<br>
+				<strong>Godkänt:</strong> 40p (66,7%)<br>
+				<strong>Väl godkänt:</strong> 50p (83,3%)
+			</p>
+
+			<p>När du är klar så zip:ar du <strong>hela</strong> den här mappen och döper zip-filen till ditt namn och därefter laddar upp den på Itslearning.</p>
+
+			<h3>Slutligen - ett tips</h3>
+			<p>Gör de uppgifterna du kan bums, häng inte upp dig på en uppgift och missa att få viktiga poäng på de andra bara för att du inte hann dit innan tiden tog slut!</p>
+		</div>
+
+
+		<hr />
+
+
+		<!--
+			Higher Order Array Methods
+		-->
+
+		<h2>1. Higher Order Array Methods [30p]</h2>
+
+		<div class="alert alert-info">
+			<h3>Viktig info!</h3>
+			<p>Här ska du använda dig av Higher Order Array-funktionerna <code>.filter()</code>, <code>.map()</code>, <code>.reduce()</code> och <code>.sort()</code>, <strong><u>ej</u></strong> med <code>.forEach()</code>.</p>
+			<p>Alla funktioner finns definierade och ska färdigställas i filen <kbd>1-arrays.js</kbd>. Array:en som dina funktioner får som parameter finns överst i filen.</p>
+		</div>
+
+		<!-- 1.1. -->
+		<h3>1.1. Funktionerna <code>getBoysCount()</code> och <code>getGirlsCount()</code> ska returnera antalet pojkar respektive antalet flickor. [3p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas "Antal pojkar: 5" samt "Antal flickor: 4".</p>
+		<div id="answer-1-1" class="answer">
+			<p>Antal pojkar: <span id="answer-1-1-boys"></span></p>
+			<p>Antal flickor: <span id="answer-1-1-girls"></span></p>
+		</div>
+
+		<!-- 1.2. -->
+		<h3>1.2. Funktionerna <code>getNamesOfAllBoys()</code> och <code>getNamesOfAllGirls()</code> ska returnera varsin <em>array</em> med alla pojkars namn respektive alla flickors namn. [4p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas alla pojkars respektive flickors namn.</p>
+		<div id="answer-1-2" class="answer row m-0">
+			<div class="col">
+				<h4>Alla pojknamn</h4>
+				<div id="answer-1-2-boynames"></div>
+			</div>
+			<div class="col">
+				<h4>Alla flicknamn</h4>
+				<div id="answer-1-2-girlnames"></div>
+			</div>
+		</div>
+
+		<h3>1.3. Funktionen <code>getAvgGrade()</code> ska räkna ut det genomsnittliga betyget för alla elever. [4p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas: "3.3"</p>
+		<div id="answer-1-3" class="answer">
+			<p>Genomsnittligt betyg: <span id="answer-1-3-avg-grade"></span></p>
+		</div>
+
+		<h3>1.4. Funktionen <code>getAvgGradeForAllGirls()</code> ska räkna ut det genomsnittliga betyget bland alla flickor. [6p]</h3>
+		<p class="help-text">När du lyckats ska här nedan visas: "3.25"</p>
+		<div id="answer-1-4" class="answer">
+			<p>Genomsnittligt bland alla flickor: <span id="answer-1-4-avg-grade"></span></p>
+		</div>
+
+		<h3>1.5. Funktionen <code>getAvgGradeForYear()</code> ska ta ut alla elever för en viss årskull och räkna ut det genomsnittliga betyget för dem. [8p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas: "3.5, 2.5, 3, 0, 4" för respektive årskurs.</p>
+		<div id="answer-1-5" class="answer">
+			<p>Årskurs 1: <span id="answer-1-5-year-1"></span></p>
+			<p>Årskurs 2: <span id="answer-1-5-year-2"></span></p>
+			<p>Årskurs 3: <span id="answer-1-5-year-3"></span></p>
+			<p>Årskurs 4: <span id="answer-1-5-year-4"></span></p>
+			<p>Årskurs 5: <span id="answer-1-5-year-5"></span></p>
+		</div>
+
+		<h3>1.6. Funktionen <code>getNameOfStudentWithHighestGrade()</code> ska returnera <em>namnet</em> på den elev som har det högsta betyget. [5p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas: "Donald"</p>
+		<div id="answer-1-6" class="answer">
+			<p>Elev med det högsta betyget: <span id="answer-1-6-best-student"></span></p>
+		</div>
+
+
+		<hr />
+
+
+		<!--
+			Async
+		-->
+
+		<h2>2. Async [15p]</h2>
+
+		<!-- 2.1. -->
+		<h3>2.1. Funktionen <code>btnSurpriseMe()</code> kallas på när man klickar på knappen nedan. Skriv innehållet i funktionen så att det <em>1,5 sekund efter</em> att funktionen kallats visas en alert-ruta med texten "Surprise!". [2p]</h3>
+		<p class="help-text">När du lyckats så ska det visas en alert-ruta 1,5 sekund efter ett klick på knappen nedan.</p>
+		<div id="answer-2-1" class="answer">
+			<button id="btnSurprise" class="btn btn-surprise">Surprise me! 🎁</button>
+		</div>
+
+		<!-- 2.2. -->
+		<h3>2.2. Skriv den asynkrona funktionen <code>getJson(url)</code> som ska göra en HTTP GET-förfrågan enligt instruktionerna i filen <kbd>2-async.js</kbd>. [4p]</h3>
+		<div id="answer-2-2" class="answer no-output"><p>Den här uppgiften lämnar ingen output.</p></div>
+
+		<!-- 2.3. -->
+		<h3>2.3. Med hjälp av funktionen från förra uppgiften ska du nu skriva kod för att hämta ut data från URL:en i instruktionerna i filen <kbd>2-async.js</kbd> och skriva ut svaret nedan. [3p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas: "Luke Skywalker".</p>
+		<div id="answer-2-3-wrapper" class="answer"><p>Svar: <span id="answer-2-3"></span></p></div>
+
+		<!-- 2.4. -->
+		<h3>2.4. Med hjälp av funktionen från förra uppgiften, skriv funktionen `getHomeworld(person_id)` för att hämta ut data i två steg enligt instruktionerna i filen <kbd>2-async.js</kbd>. [6p]</h3>
+		<p class="help-text">När du lyckats så ska här nedan visas: "Naboo".</p>
+		<div id="answer-2-4-wrapper" class="answer"><p>Svar: <span id="answer-2-4"></span></p></div>
+
+
+		<hr />
+
+
+		<!--
+			OOP
+		-->
+
+		<h2>3. OOP [15p]</h2>
+
+		<!-- 3.1. -->
+		<h3>3.1. Skapa klassen <code>Character</code> i filen <kbd>3-1-class-movie-character.js</kbd> enligt följande specifikation: [6p]</span></h3>
+		<div class="help-text">
+			<ul>
+				<li>Måste ha ett <kbd>name</kbd> vid skapandet.</li>
+				<li>Ska kunna ange <kbd>height</kbd>, <kbd>weight</kbd> och <kbd>gender</kbd> vid skapandet. Om de inte anges så ska de få värdet <kbd>"n/a"</kbd>.</li>
+				<li>Ska ha metoden <code>getInfo()</code> som returnerar en sträng med namn, längd, vikt och kön på karaktären.</li>
+			</ul>
+		</div>
+		<div id="answer-3-1-class-movie-character" class="answer no-output"><p>Den här uppgiften lämnar ingen output.</p></div>
+
+		<!-- 3.2. -->
+		<h3>3.2. Skapa klassen <code>Movie</code> i filen <kbd>3-2-class-movie.js</kbd> enligt följande specifikation: [9p]</h3>
+		<div class="help-text">
+			<ul>
+				<li>Måste ha ett <kbd>name</kbd> vid skapandet.</li>
+				<li>Ska kunna ange <kbd>runtime</kbd> och <kbd>release_year</kbd> vid skapandet. Om de inte anges så ska de få värdet <kbd>"n/a"</kbd>.</li>
+				<li>Ska ha metoden <code>addCharacter()</code> som lägger till en karaktär i filmen.</li>
+				<li>Ska ha metoden <code>getCharactersInfo()</code> som returnerar en array av strängar med alla karaktärers info.</li>
+			</ul>
+		</div>
+		<div id="answer-3-2-movie" class="answer no-output"><p>Den här uppgiften lämnar ingen output.</p></div>
+
+
+		<hr />
+
+
+		<p class="help-text"><strong>&lsaquo;/tenta&rsaquo;</strong>. Nu ska du bara skicka upp en zip av din kod <a href="#instructions">till länken enligt instruktionerna överst på sidan</a>.</p>
+
+		<div class="high-five">🙌🏻</div>
+
+	</div>
+
+	<script src="assets/helpers.js"></script>
+
+	<script src="1-arrays.js"></script>
+	<script src="2-async.js"></script>
+
+	<script src="3-1-class-movie-character.js"></script>
+	<script src="3-2-class-movie.js"></script>
+
+	<script src="assets/app.js"></script>
+</body>
+</html>
