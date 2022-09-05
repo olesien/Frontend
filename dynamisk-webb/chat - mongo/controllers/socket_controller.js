@@ -27,6 +27,8 @@ const rooms = [
 	},
 ];
 
+const getRoomById = (id) => rooms.find((chatroom) => chatroom.id === id);
+
 const handleDisconnect = function () {
 	debug(`Client ${this.id} disconnected :(`);
 
@@ -61,7 +63,7 @@ const handleUserJoined = async function (username, room_id, callback) {
 
 	// add socket to list of online users in this room
 	// a) find room object with `id` === `general`
-	const room = rooms.find((chatroom) => chatroom.id === room_id);
+	const room = getRoomById(room_id);
 
 	// b) add socket to room's `users` object
 	room.users[this.id] = username;
@@ -95,12 +97,25 @@ const handleUserJoined = async function (username, room_id, callback) {
 const handleChatMessage = async function (data) {
 	debug("Someone said something: ", data);
 
-	// emit `chat:message` event to everyone EXCEPT the sender
-	this.broadcast.to(data.room).emit("chat:message", data);
+	const room = getRoomById(data.room);
 
-	// save message in database
-	const message = new models.Message(data);
-	await message.save();
+	// emit `chat:message` event to everyone EXCEPT the sender
+	this.broadcast.to(room.id).emit("chat:message", data);
+
+	try {
+		const message = new models.Message({
+			...data,
+			timestamp: 1,
+			users: Object.values(room.users),
+		});
+		// save message in database
+
+		await message.save();
+	} catch (error) {
+		socket.emit("chat:notice", {
+			message: "Could not save your message in the database",
+		});
+	}
 };
 
 module.exports = function (socket, _io) {

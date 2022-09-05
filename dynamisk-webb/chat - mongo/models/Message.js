@@ -7,8 +7,9 @@ const mongoose = require("mongoose");
 const messageSchema = new mongoose.Schema({
 	username: String,
 	room: String,
-	content: String,
-	timestamp: Number,
+	content: { type: String, trim: true },
+	timestamp: { type: Number, min: 1647592081000 },
+	users: [""],
 });
 
 // Declare Model
